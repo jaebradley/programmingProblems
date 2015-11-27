@@ -6,7 +6,7 @@ public class ReverseWordsInStringImpl implements ReverseWordsInString {
     @Override
     public String reverseWordsInString(final String string) {
         final String[] lastString = new String[1];
-        lastString[0] = string;w
+        lastString[0] = string;
         int stringCharacterIndex = 0;
         int wordStartIndex = 0;
         final StringBuilder reverseWordStringBuilder = new StringBuilder();
