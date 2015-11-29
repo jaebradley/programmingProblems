@@ -16,35 +16,30 @@ public class ReverseWordsInStringImpl implements ReverseWordsInString {
      */
     @Override
     public String reverseWordsInString(final String string) {
-        final String[] candidateReversedWordsString = new String[1];
-        candidateReversedWordsString[0] = string;
-        int stringCharacterIndex = 0;
-        int wordStartIndex = 0;
-        final StringBuilder reverseWordStringBuilder = new StringBuilder();
-        while (stringCharacterIndex < string.length()) {
-            if (' ' != string.charAt(stringCharacterIndex)) {
-                if (reverseWordStringBuilder.length() == 0) {
-                    wordStartIndex = stringCharacterIndex;
+        final char[] chars = string.toCharArray();
+        int wordStartIndex = -1;
+
+        for (int charIndex = 0; charIndex < chars.length; charIndex++) {
+            if (Character.isWhitespace(chars[charIndex])) {
+                continue;
+            }
+
+            if (0 > wordStartIndex) {
+                    wordStartIndex = charIndex;
+            }
+
+            if (chars.length - 1 == charIndex || Character.isWhitespace(chars[charIndex + 1])) {
+                for (int a = wordStartIndex, b = charIndex; a < b; a++, b--) {
+                    final char aTempSwapChar = chars[a];
+                    chars[a] = chars[b];
+                    chars[b] = aTempSwapChar;
                 }
-                reverseWordStringBuilder.append(string.charAt(stringCharacterIndex));
+
+                wordStartIndex = -1;
             }
 
-            if (' ' == string.charAt(stringCharacterIndex) && reverseWordStringBuilder.length() > 0) {
-                candidateReversedWordsString[0] = new StringBuilder().
-                        append(candidateReversedWordsString[0].substring(0, wordStartIndex)).
-                        append(reverseWordStringBuilder.reverse().toString()).
-                        append(candidateReversedWordsString[0].substring(stringCharacterIndex)).toString();
-                reverseWordStringBuilder.setLength(0);
-            }
-
-            if (stringCharacterIndex == string.length() - 1 && reverseWordStringBuilder.length() > 0) {
-                candidateReversedWordsString[0] = new StringBuilder().
-                        append(candidateReversedWordsString[0].substring(0, wordStartIndex)).
-                        append(reverseWordStringBuilder.reverse().toString()).toString();
-            }
-            stringCharacterIndex++;
         }
 
-        return candidateReversedWordsString[0];
+        return new String(chars);
     }
 }
