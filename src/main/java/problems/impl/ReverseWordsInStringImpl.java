@@ -50,6 +50,7 @@ public class ReverseWordsInStringImpl implements ReverseWordsInString, ReverseWo
      * Returns a String with the words in the same order as the input String, but with each word's characters in reverse order
      * achieving this effect using a Stack implementation.
      *
+     * Implementation idea from: http://codereview.stackexchange.com/a/112210/90653
      * For each character in the input String, if the character is not a whitespace, push to a Stack.
      * If the character is a whitespace, pop the Stack to a StringBuilder.
      *
