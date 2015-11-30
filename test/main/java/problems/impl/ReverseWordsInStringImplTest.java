@@ -11,7 +11,9 @@ public class ReverseWordsInStringImplTest {
         final String testString = "a fox jumped over a log";
         final String expectedReverseString = "a xof depmuj revo a gol";
         final String result = reverseWordsInString.reverseWordsInString(testString);
+        final String resultStackImpl = reverseWordsInString.reverseWordsInStringUsingStack(testString);
         Assert.assertEquals(expectedReverseString, result);
+        Assert.assertEquals(expectedReverseString, resultStackImpl);
     }
 
     @Test
@@ -19,7 +21,8 @@ public class ReverseWordsInStringImplTest {
         final String testString = " a fox   jumped      over a log  ";
         final String expectedReverseString = " a xof   depmuj      revo a gol  ";
         final String result = reverseWordsInString.reverseWordsInString(testString);
+        final String resultStackImpl = reverseWordsInString.reverseWordsInStringUsingStack(testString);
         Assert.assertEquals(expectedReverseString, result);
+        Assert.assertEquals(expectedReverseString, resultStackImpl);
     }
-
 }

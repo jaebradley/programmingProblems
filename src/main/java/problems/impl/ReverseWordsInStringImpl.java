@@ -1,12 +1,15 @@
 package main.java.problems.impl;
 
 import main.java.problems.interfaces.ReverseWordsInString;
+import main.java.problems.interfaces.ReverseWordsInStringUsingStack;
+
+import java.util.Stack;
 
 /**
  * Reverse the words in a string, while maintaining the order of the words in the string.
  * A word is defined as any collection of characters within a string that is separated by an arbitrary number of spaces.
  */
-public class ReverseWordsInStringImpl implements ReverseWordsInString {
+public class ReverseWordsInStringImpl implements ReverseWordsInString, ReverseWordsInStringUsingStack {
     /**
      * Returns a String where all the words of the input String are reversed.
      *
@@ -41,5 +44,27 @@ public class ReverseWordsInStringImpl implements ReverseWordsInString {
         }
 
         return new String(chars);
+    }
+
+    @Override
+    public String reverseWordsInStringUsingStack(final String string) {
+        final Stack<Character> word = new Stack<>();
+        final StringBuilder resultStringBuilder = new StringBuilder();
+        for (final char c : string.toCharArray()) {
+            if (Character.isWhitespace(c)) {
+                while (!word.isEmpty()) {
+                    resultStringBuilder.append(word.pop());
+                }
+                resultStringBuilder.append(c);
+            } else {
+                word.push(c);
+            }
+        }
+
+        while (!word.isEmpty()) {
+            resultStringBuilder.append(word.pop());
+        }
+
+        return resultStringBuilder.toString();
     }
 }
