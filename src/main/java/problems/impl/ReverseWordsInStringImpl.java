@@ -46,6 +46,18 @@ public class ReverseWordsInStringImpl implements ReverseWordsInString, ReverseWo
         return new String(chars);
     }
 
+    /**
+     * Returns a String with the words in the same order as the input String, but with each word's characters in reverse order
+     * achieving this effect using a Stack implementation.
+     *
+     * For each character in the input String, if the character is not a whitespace, push to a Stack.
+     * If the character is a whitespace, pop the Stack to a StringBuilder.
+     *
+     * Return the final String from the StringBuilder
+     *
+     * @param string input String
+     * @return the input String, except each word is in reverse character order
+     */
     @Override
     public String reverseWordsInStringUsingStack(final String string) {
         final Stack<Character> word = new Stack<>();
