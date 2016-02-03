@@ -1,11 +1,6 @@
-package main.java.problems.impl;
+package problems.impl;
 
-import main.java.problems.interfaces.CommonChildStringLengthCalculator;
-
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import problems.interfaces.CommonChildStringLengthCalculator;
 
 public class CommonChildStringLengthCalculatorImpl implements CommonChildStringLengthCalculator {
     @Override

@@ -1,4 +1,4 @@
-package main.java.problems.interfaces;
+package problems.interfaces;
 
 public interface ArraySumEquivalenceValidator {
     boolean validateArraySumEquivalence(final int[] arr);
