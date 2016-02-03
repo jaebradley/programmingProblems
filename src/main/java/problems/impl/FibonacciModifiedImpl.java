@@ -2,7 +2,6 @@ package problems.impl;
 
 import problems.interfaces.FibonacciModified;
 
-import java.math.BigDecimal;
 import java.math.BigInteger;
 
 /**
@@ -32,8 +31,7 @@ public class FibonacciModifiedImpl implements FibonacciModified {
             throw new IllegalArgumentException("current term must be greater than or equal to last term");
         }
 
-        final BigInteger squaredTerm = new BigDecimal(Math.pow(currentTerm.doubleValue(), 2)).toBigInteger();
-        return squaredTerm.add(lastTerm);
+        return currentTerm.multiply(currentTerm).add(lastTerm);
     }
 
     @Override
