@@ -1,6 +1,6 @@
-package main.java.problems.impl;
+package problems.impl;
 
-import main.java.problems.interfaces.ReverseWordOrderInString;
+import problems.interfaces.ReverseWordOrderInString;
 
 import java.util.Stack;
 

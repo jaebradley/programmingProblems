@@ -1,4 +1,4 @@
-package main.java.problems.impl;
+package problems.impl;
 
 import org.junit.Assert;
 import org.junit.Test;

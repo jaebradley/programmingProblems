@@ -1,8 +1,7 @@
 package problems.impl;
 
-import main.java.problems.interfaces.FibonacciModified;
+import problems.interfaces.FibonacciModified;
 
-import java.math.BigDecimal;
 import java.math.BigInteger;
 
 /**

@@ -1,6 +1,7 @@
-package main.java.problems.impl;
+package problems.impl;
 
-import main.java.problems.interfaces.BracketPairingValidation;
+
+import problems.interfaces.BracketPairingValidation;
 
 import java.util.Stack;
 

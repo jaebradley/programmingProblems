@@ -1,6 +1,6 @@
-package main.java.problems.impl;
+package problems.impl;
 
-import main.java.problems.interfaces.MultiplyWithoutMultiplierOperation;
+import problems.interfaces.MultiplyWithoutMultiplierOperation;
 
 public class MultiplyWithoutMultiplierOperationImpl implements MultiplyWithoutMultiplierOperation {
     @Override

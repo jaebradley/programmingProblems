@@ -1,7 +1,7 @@
-package main.java.problems.impl;
+package problems.impl;
 
-import main.java.problems.interfaces.ReverseWordsInString;
-import main.java.problems.interfaces.ReverseWordsInStringUsingStack;
+import problems.interfaces.ReverseWordsInString;
+import problems.interfaces.ReverseWordsInStringUsingStack;
 
 import java.util.Stack;
 

@@ -1,6 +1,6 @@
-package main.java.problems.impl;
+package problems.impl;
 
-import main.java.problems.interfaces.ArraySumEquivalenceValidator;
+import problems.interfaces.ArraySumEquivalenceValidator;
 
 public class ArraySumEquivalenceValidatorImpl implements ArraySumEquivalenceValidator {
     @Override
