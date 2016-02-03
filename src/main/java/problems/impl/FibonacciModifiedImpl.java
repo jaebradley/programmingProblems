@@ -1,4 +1,4 @@
-package main.java.problems.impl;
+package problems.impl;
 
 import main.java.problems.interfaces.FibonacciModified;
 
@@ -32,8 +32,7 @@ public class FibonacciModifiedImpl implements FibonacciModified {
             throw new IllegalArgumentException("current term must be greater than or equal to last term");
         }
 
-        final BigInteger squaredTerm = new BigDecimal(Math.pow(currentTerm.doubleValue(), 2)).toBigInteger();
-        return squaredTerm.add(lastTerm);
+        return currentTerm.multiply(currentTerm).add(lastTerm);
     }
 
     @Override
