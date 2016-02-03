@@ -1,11 +1,10 @@
-package main.java.problems.impl;
+package problems.impl;
 
-import main.java.problems.interfaces.AlmostEquivalentCharacterFrequencyValidator;
+import problems.interfaces.AlmostEquivalentCharacterFrequencyValidator;
 
 import java.util.*;
 
 public class AlmostEquivalentCharacterFrequencyValidatorImpl implements AlmostEquivalentCharacterFrequencyValidator {
-    @Override
     public boolean validateAlmostEquivalentCharacterFrequency(final String candidate) {
         if (0 == candidate.trim().length()) {
             throw new IllegalArgumentException("string candidate must have non-zero non-whitespace length");

@@ -1,8 +1,8 @@
-package main.java.problems.impl;
+package problems.impl;
 
-import main.java.problems.interfaces.FibonacciModified;
 import org.junit.Assert;
 import org.junit.Test;
+import problems.interfaces.FibonacciModified;
 
 import java.math.BigInteger;
 

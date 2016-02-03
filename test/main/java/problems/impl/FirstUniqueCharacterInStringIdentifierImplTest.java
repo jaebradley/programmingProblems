@@ -1,10 +1,9 @@
-package main.java.problems.impl;
+package problems.impl;
 
-import main.java.problems.exceptions.NoUniqueCharactersException;
+
 import org.junit.Assert;
 import org.junit.Test;
-
-import static org.junit.Assert.*;
+import problems.exceptions.NoUniqueCharactersException;
 
 public class FirstUniqueCharacterInStringIdentifierImplTest {
     private final FirstUniqueCharacterInStringIdentifierImpl firstUniqueCharacterInStringIdentifier = new FirstUniqueCharacterInStringIdentifierImpl();

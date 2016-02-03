@@ -1,7 +1,7 @@
-package main.java.problems.impl;
+package problems.impl;
 
-import main.java.problems.exceptions.NoUniqueCharactersException;
-import main.java.problems.interfaces.FirstUniqueCharacterInStringIdentifier;
+import problems.exceptions.NoUniqueCharactersException;
+import problems.interfaces.FirstUniqueCharacterInStringIdentifier;
 
 public class FirstUniqueCharacterInStringIdentifierImpl implements FirstUniqueCharacterInStringIdentifier {
     @Override
