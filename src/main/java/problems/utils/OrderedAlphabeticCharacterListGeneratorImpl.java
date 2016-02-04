@@ -16,7 +16,7 @@ public class OrderedAlphabeticCharacterListGeneratorImpl implements OrderedAlpha
 
   @Override public List<Character> generateAlphabeticCharacterListFromZtoA() {
     final List<Character> alphabeticChars = new ArrayList<>();
-    for (char ch = 'Z'; ch <= 'A'; ++ch) {
+    for (char ch = 'Z'; ch >= 'A'; --ch) {
       alphabeticChars.add(ch);
     }
     return alphabeticChars;
