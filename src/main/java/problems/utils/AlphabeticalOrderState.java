@@ -1,0 +1,7 @@
+package problems.utils;
+
+public enum AlphabeticalOrderState {
+  IN_ALPHABETICAL_ORDER,
+  IN_REVERSE_ALPHABETICAL_ORDER,
+  IN_NEITHER_ALPHABETICAL_NOR_REVERSE_ALPHABETICAL_ORDER;
+}
