@@ -2,6 +2,6 @@ package problems.interfaces;
 
 import problems.utils.AlphabeticalOrderState;
 
-public interface CharactersInAlphabeticalOrderEvaluator {
+public interface StringCharactersInAlphabeticalOrderEvaluator {
       AlphabeticalOrderState evaluateAlphabeticalOrderOfCharacters(final String candidate);
 }
