@@ -7,28 +7,45 @@ import java.util.Arrays;
 public class GarlandLengthIdentifierImpl implements GarlandLengthIdentifier {
     @Override
     public int identifyGarlandLength(final String candidate) {
-        // check if string is non-empty or size 1
-        final char[] chars = candidate.toCharArray();
-        for (int subStringIndex = 1; subStringIndex < chars.length - 1 - subStringIndex; subStringIndex++) {
-            char[] subStringChars = Arrays.copyOfRange(chars, subStringIndex, chars.length);
-            if (!candidateIsASubset(chars, subStringChars)) {
-                return subStringIndex - 1;
+        switch(candidate.length()) {
+            case 0: {
+                return 0;
+            }
+
+            case 1: {
+                return 1;
+            }
+
+            default: {
+                final char[] chars = candidate.toCharArray();
+                for (int subStringIndex = 1; subStringIndex <= chars.length - subStringIndex; subStringIndex++) {
+                    final char[] startingChars = Arrays.copyOfRange(chars, 0, subStringIndex);
+                    final char[] remainingChars = Arrays.copyOfRange(chars, subStringIndex, chars.length);
+                    if (subsetIndexIdentifier(remainingChars, startingChars) == -1) {
+                        return subStringIndex - 1;
+                    }
+                }
+
+                return Math.floorDiv(chars.length, 2);
             }
         }
-
-        return chars.length;
     }
 
     @Override
-    public boolean candidateIsASubset(final char[] chars, final char[] candidateChars) {
-        for (int index = 0; index < chars.length - candidateChars.length; index++) {
+    public int subsetIndexIdentifier(final char[] chars, final char[] candidateChars) {
+        for (int index = 0; index <= chars.length - candidateChars.length; index++) {
+            int counter = 0;
             for (int candidateCharIndex = 0; candidateCharIndex < candidateChars.length; candidateCharIndex++) {
                 if (chars[index + candidateCharIndex] != candidateChars[candidateCharIndex]) {
-                    return false;
+                    counter++;
                 }
+            }
+
+            if (0 == counter) {
+                return index;
             }
         }
 
-        return true;
+        return -1;
     }
 }
