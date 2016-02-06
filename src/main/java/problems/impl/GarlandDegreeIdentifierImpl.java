@@ -1,13 +1,13 @@
 package problems.impl;
 
-import problems.interfaces.GarlandLengthIdentifier;
+import problems.interfaces.GarlandDegreeIdentifier;
 
 import java.util.Arrays;
 
-public class GarlandLengthIdentifierImpl implements GarlandLengthIdentifier {
+public class GarlandDegreeIdentifierImpl implements GarlandDegreeIdentifier {
     @Override
-    public int identifyGarlandLength(final String candidate) {
-        switch(candidate.length()) {
+    public int identifyGarlandDegree(final String candidate) {
+        switch (candidate.length()) {
             case 0: {
                 return 0;
             }
