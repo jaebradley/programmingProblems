@@ -3,11 +3,11 @@ package problems.impl;
 import org.junit.Assert;
 import org.junit.Test;
 
-public class VowelOrderValidatorImplTest {
+public class VowelOrderValidatorTest {
 
     @Test
     public void testExpected() {
-        Assert.assertFalse(VowelOrderValidatorImpl.areVowelsOrdered("JAYE"));
+        Assert.assertFalse(VowelOrderValidator.areVowelsOrdered("JAYE"));
     }
 
 }

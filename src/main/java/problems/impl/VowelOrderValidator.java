@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class VowelOrderValidatorImpl {
+public class VowelOrderValidator {
     private static final List<Character> vowels = new ArrayList<>(
             Arrays.asList('A', 'E', 'I', 'O', 'U', 'Y')
     );
