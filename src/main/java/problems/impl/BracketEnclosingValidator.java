@@ -30,8 +30,11 @@ public class BracketEnclosingValidator {
         }
 
         case CLOSED_SQUARE_BRACKET:case CLOSED_CURLY_BRACKET:case CLOSED_PARENTHESIS: {
-          final Character nextChar = bracketStack.pop();
-          if (ch != bracketMap.get(nextChar)) {
+          if (bracketStack.isEmpty()) {
+            return false;
+          }
+
+          if (ch != bracketMap.get(bracketStack.pop())) {
             return false;
           }
           break;

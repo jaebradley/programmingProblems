@@ -7,7 +7,7 @@ public class BracketEnclosingValidatorTest {
 
   @Test
   public void testExpected() {
-    Assert.assertTrue(BracketEnclosingValidator.validBracketEnclosing("[{()}]"));
+    Assert.assertFalse(BracketEnclosingValidator.validBracketEnclosing("[a{)}]"));
   }
 
 }
