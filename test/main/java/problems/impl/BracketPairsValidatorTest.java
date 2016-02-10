@@ -7,7 +7,7 @@ public class BracketPairsValidatorTest {
 
   @Test
   public void testExpected() {
-    Assert.assertFalse(BracketPairsValidator.validBracketPairs("[a{)}]"));
+    Assert.assertFalse(BracketPairsValidator.validBracketPairs("A[B{C}(D)"));
   }
 
 }
