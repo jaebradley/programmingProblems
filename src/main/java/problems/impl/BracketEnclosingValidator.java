@@ -43,6 +43,6 @@ public class BracketEnclosingValidator {
       }
     }
 
-    return true;
-  }
+    return bracketStack.isEmpty();
+    }
 }
