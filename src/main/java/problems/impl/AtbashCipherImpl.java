@@ -13,7 +13,7 @@ public class AtbashCipherImpl implements AtbashCipher {
 
   @Override public char atbashPair(final char c) {
     if (Character.isAlphabetic(c)) {
-      return ALPHABET.get(ALPHABET.size() - ALPHABET.indexOf(c));
+      return ALPHABET.get((ALPHABET.size() - 1) - ALPHABET.indexOf(c));
     }
 
     throw new RuntimeException("Cannot identify Atbash pair");
