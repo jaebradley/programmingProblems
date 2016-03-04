@@ -9,18 +9,18 @@ public class AtbashCipherImplTest {
   @Test
   public void testAtBashPair() {
     try {
-      atbashCipherImpl.atbashPair('1');
+      atbashCipherImpl.atbashCounterpart('1');
     } catch (RuntimeException e) {
       // expected
     }
 
     try {
-      atbashCipherImpl.atbashPair('/');
+      atbashCipherImpl.atbashCounterpart('/');
     } catch (RuntimeException e) {
       // expected
     }
 
-    Assert.assertEquals(atbashCipherImpl.atbashPair('A'), 'Z');
+    Assert.assertEquals(atbashCipherImpl.atbashCounterpart('A'), 'Z');
   }
 
   @Test

@@ -6,12 +6,17 @@ import java.util.List;
 
 import problems.interfaces.AtbashCipher;
 
+/**
+ * The Atbash cipher is a simple substitution cipher that replaces the first character of the alphabet with the last,
+ * the second character with the second-to-last, the third character with the third-to-last, and so on.
+ */
+
 public class AtbashCipherImpl implements AtbashCipher {
   public static final List<Character> ALPHABET = new ArrayList<>(
       Arrays.asList('A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z')
   );
 
-  @Override public char atbashPair(final char c) {
+  @Override public char atbashCounterpart(final char c) {
     if (Character.isAlphabetic(c)) {
       return ALPHABET.get((ALPHABET.size() - 1) - ALPHABET.indexOf(c));
     }
@@ -25,11 +30,11 @@ public class AtbashCipherImpl implements AtbashCipher {
       final Character upperCaseChar = Character.toUpperCase(c);
 
       if (Character.isLowerCase(c)) {
-        return Character.toLowerCase(atbashPair(upperCaseChar));
+        return Character.toLowerCase(atbashCounterpart(upperCaseChar));
       }
 
       if (Character.isUpperCase(c)) {
-        return Character.toUpperCase(atbashPair(upperCaseChar));
+        return Character.toUpperCase(atbashCounterpart(upperCaseChar));
       }
 
       throw new RuntimeException("Cannot identify case of alphabetic character");
