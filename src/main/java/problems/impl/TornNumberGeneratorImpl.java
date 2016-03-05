@@ -5,10 +5,16 @@ import java.util.List;
 
 import problems.exceptions.TornNumberCandidateOddDigitCountException;
 import problems.interfaces.TornNumberGenerator;
+import problems.interfaces.TornNumberValidator;
 import problems.utils.NumberUtil;
 import problems.utils.SplitInteger;
 
 public class TornNumberGeneratorImpl implements TornNumberGenerator {
+  private final TornNumberValidator tornNumberValidator;
+
+  public TornNumberGeneratorImpl(final TornNumberValidator tornNumberValidator) {
+    this.tornNumberValidator = tornNumberValidator;
+  }
 
   @Override public SplitInteger generateSplitIntegerFromTornNumberCandidate(final int tornNumberCandidate) throws TornNumberCandidateOddDigitCountException{
     if (tornNumberCandidate < 1) {
@@ -37,10 +43,17 @@ public class TornNumberGeneratorImpl implements TornNumberGenerator {
     while (tornNumberCandidate <= upperLimitInclusive) {
       try {
         final SplitInteger splitInteger = generateSplitIntegerFromTornNumberCandidate(tornNumberCandidate);
-        
-      } catch (TornNumberCandidateOddDigitCountException e) {
+        if (tornNumberValidator.isTornNumber(splitInteger)) {
+          tornNumbers.add(tornNumberCandidate);
+        }
 
+        squareRoot++;
+        tornNumberCandidate = NumberUtil.square(squareRoot);
+      } catch (TornNumberCandidateOddDigitCountException e) {
+        squareRoot++;
+        tornNumberCandidate = NumberUtil.square(squareRoot);
       }
     }
+    return tornNumbers;
   }
 }

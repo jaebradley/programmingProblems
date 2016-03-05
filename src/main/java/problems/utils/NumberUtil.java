@@ -1,6 +1,7 @@
 package problems.utils;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 public class NumberUtil {
@@ -19,7 +20,7 @@ public class NumberUtil {
     return (number % 2 == 0);
   }
 
-  public static List<Integer>positiveIntegerDigits(final int positiveInt) {
+  public static List<Integer> positiveIntegerDigits(final int positiveInt) {
     if (positiveInt < 1) {
       throw new IllegalArgumentException("positiveInt is less than 1");
     }
@@ -31,5 +32,18 @@ public class NumberUtil {
       digits.add(number);
     }
     return digits;
+  }
+
+  public static int digitsToInteger(final List<Integer> digits) {
+    final StringBuilder stringBuilder = new StringBuilder();
+    final Iterator<Integer> iterator = digits.iterator();
+    while(iterator.hasNext())
+    {
+      stringBuilder.append(iterator.next());
+      if (iterator.hasNext()){
+        stringBuilder.append(",");
+      }
+    }
+    return Integer.valueOf(stringBuilder.toString());
   }
 }
