@@ -29,4 +29,13 @@ public class NumberUtilTest {
     Assert.assertEquals(NumberUtil.positiveIntegerDigitCount(100), 3);
   }
 
+  @Test
+  public void testIsEven() {
+    Assert.assertTrue(NumberUtil.isEven(-2));
+    Assert.assertFalse(NumberUtil.isEven(-1));
+    Assert.assertTrue(NumberUtil.isEven(0));
+    Assert.assertFalse(NumberUtil.isEven(1));
+    Assert.assertTrue(NumberUtil.isEven(2));
+  }
+
 }
