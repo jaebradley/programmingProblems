@@ -35,7 +35,7 @@ public class HappyNumberCounter {
       // case 3: has not been cached but starts with 1 or 4
       // case 4: has not been cached and does not start with 1 or 4
 
-      Boolean isHappy = happyNumbers.get(number);
+      Boolean isHappy = happyNumbers.getOrDefault(number, false);
       if (isHappy == Boolean.TRUE) {
         count++;
       } else if (isHappy == null) {
