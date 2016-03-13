@@ -1,8 +1,10 @@
 package problems.utils;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Set;
 
 public class NumberUtil {
   public static int positiveIntegerDigitCount(final int positiveInt) {
@@ -45,5 +47,20 @@ public class NumberUtil {
       }
     }
     return Integer.valueOf(stringBuilder.toString());
+  }
+
+  public static Set<Integer> getDivisorsForPositiveInteger(final int positiveInteger) {
+    if (positiveInteger < 1) {
+      throw new RuntimeException("positive integer must be greater than 0");
+    }
+
+    final Set<Integer> divisors = new HashSet<>();
+    for (int candidateDivisor = 1; candidateDivisor <= Math.ceil(Math.sqrt(positiveInteger)); candidateDivisor++) {
+      if (positiveInteger % candidateDivisor == 0) {
+        divisors.add(candidateDivisor);
+        divisors.add(new Double(positiveInteger / candidateDivisor).intValue());
+      }
+    }
+    return divisors;
   }
 }

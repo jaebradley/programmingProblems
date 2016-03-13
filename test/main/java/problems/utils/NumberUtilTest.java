@@ -1,5 +1,9 @@
 package problems.utils;
 
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Set;
+
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -36,6 +40,16 @@ public class NumberUtilTest {
     Assert.assertTrue(NumberUtil.isEven(0));
     Assert.assertFalse(NumberUtil.isEven(1));
     Assert.assertTrue(NumberUtil.isEven(2));
+  }
+
+  @Test
+  public void testDivisorsForPositiveIntegers() {
+    Set<Integer> oneDivisors = new HashSet<>(Arrays.asList(1));
+    Set<Integer> twoDivisors = new HashSet<>(Arrays.asList(1, 2));
+    Set<Integer> tenDivisors = new HashSet<>(Arrays.asList(1, 2, 5, 10));
+    Assert.assertEquals(NumberUtil.getDivisorsForPositiveInteger(1), oneDivisors);
+    Assert.assertEquals(NumberUtil.getDivisorsForPositiveInteger(2), twoDivisors);
+    Assert.assertEquals(NumberUtil.getDivisorsForPositiveInteger(10), tenDivisors);
   }
 
 }
