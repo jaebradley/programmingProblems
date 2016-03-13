@@ -33,11 +33,9 @@ public class AtbashCipherImpl implements AtbashCipher {
         return Character.toLowerCase(atbashCounterpart(upperCaseChar));
       }
 
-      if (Character.isUpperCase(c)) {
+      else {
         return Character.toUpperCase(atbashCounterpart(upperCaseChar));
       }
-
-      throw new RuntimeException("Cannot identify case of alphabetic character");
     }
 
     return c;

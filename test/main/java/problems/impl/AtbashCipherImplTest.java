@@ -7,15 +7,17 @@ public class AtbashCipherImplTest {
   private final AtbashCipherImpl atbashCipherImpl = new AtbashCipherImpl();
 
   @Test
-  public void testAtBashPair() {
+  public void testAtBashCounterpart() {
     try {
       atbashCipherImpl.atbashCounterpart('1');
+      Assert.fail();
     } catch (RuntimeException e) {
       // expected
     }
 
     try {
       atbashCipherImpl.atbashCounterpart('/');
+      Assert.fail();
     } catch (RuntimeException e) {
       // expected
     }
