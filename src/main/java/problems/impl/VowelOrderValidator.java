@@ -1,9 +1,7 @@
 package problems.impl;
 
-import java.util.ArrayDeque;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Deque;
 import java.util.List;
 import java.util.Locale;
 
@@ -17,22 +15,6 @@ public class VowelOrderValidator {
     private static final List<Character> VOWELS = new ArrayList<>(
             Arrays.asList('A', 'E', 'I', 'O', 'U', 'Y')
     );
-
-    public static boolean areVowelsOrderedUsingStack(final String candidate) {
-        final Deque<Character> vowels = new ArrayDeque<>(VOWELS);
-        final char[] chars = candidate.toUpperCase(Locale.ROOT).toCharArray();
-        for (final char c : chars) {
-            if (vowels.contains(c)) {
-                if (vowels.peekFirst() == c) {
-                    vowels.pop();
-                } else {
-                    return false;
-                }
-            }
-        }
-
-        return true;
-    }
 
     public static boolean areVowelsOrdered(final String candidate) {
         final List<Integer> seenVowelIndices = new ArrayList<>();
