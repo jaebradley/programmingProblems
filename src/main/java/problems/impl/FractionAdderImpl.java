@@ -12,10 +12,10 @@ public class FractionAdderImpl implements FractionAdder {
   @Override public Fraction addFractions(final Fraction firstFraction, final Fraction secondFraction) {
     final int combinedNumerator = firstFraction.getNumerator() * secondFraction.getDenominator() + firstFraction.getDenominator() * secondFraction.getNumerator();
     final int combinedDenominator = firstFraction.getDenominator() * secondFraction.getDenominator();
-    final Set<Integer> gcdNumerator = NumberUtil.getDivisorsForPositiveInteger(combinedNumerator);
-    final Set<Integer> gcdDenominator = NumberUtil.getDivisorsForPositiveInteger(combinedDenominator);
-    final Set<Integer> intersection = new HashSet<>(gcdNumerator);
-    intersection.retainAll(gcdDenominator);
+    final Set<Integer> gcdNumerators = NumberUtil.getDivisorsForPositiveInteger(Math.abs(combinedNumerator));
+    final Set<Integer> gcdDenominators = NumberUtil.getDivisorsForPositiveInteger(Math.abs(combinedDenominator));
+    final Set<Integer> intersection = new HashSet<>(gcdNumerators);
+    intersection.retainAll(gcdDenominators);
     if (intersection.isEmpty()) {
       return new Fraction(
           combinedNumerator,
