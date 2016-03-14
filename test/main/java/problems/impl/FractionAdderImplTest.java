@@ -12,11 +12,11 @@ public class FractionAdderImplTest {
   public void testExpected() {
     final Fraction firstFraction = new Fraction(-1, 2);
     final Fraction secondFraction = new Fraction(7, 15);
-    final Fraction result = fractionAdder.addFractions(firstFraction, secondFraction);
+    final Fraction result = fractionAdder.sumFractions(firstFraction, secondFraction);
     Assert.assertEquals(result.getNumerator(), -1);
     Assert.assertEquals(result.getDenominator(), 30);
     final Fraction thirdFraction = new Fraction(2, 8);
-    final Fraction anotherResult = fractionAdder.addFractions(firstFraction, thirdFraction);
+    final Fraction anotherResult = fractionAdder.sumFractions(firstFraction, thirdFraction);
     Assert.assertEquals(anotherResult.getNumerator(), -1);
     Assert.assertEquals(anotherResult.getDenominator(), 4);
   }
