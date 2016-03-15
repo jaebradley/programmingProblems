@@ -5,6 +5,7 @@ import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
+import java.util.Stack;
 
 public class NumberUtil {
   public static int positiveIntegerDigitCount(final int positiveInt) {
@@ -28,11 +29,17 @@ public class NumberUtil {
     }
 
     final List<Integer> digits = new ArrayList<>();
+    final Stack<Integer> initialDigits = new Stack<>();
     int number = positiveInt;
     while (number > 0) {
-      number = number % 10;
-      digits.add(number);
+      initialDigits.add(number % 10);
+      number = number / 10;
     }
+
+    while (!initialDigits.isEmpty()) {
+      digits.add(initialDigits.pop());
+    }
+
     return digits;
   }
 

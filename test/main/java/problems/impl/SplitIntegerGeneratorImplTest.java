@@ -30,6 +30,10 @@ public class SplitIntegerGeneratorImplTest {
       // expected
     }
 
+    final SplitInteger singleInteger = splitIntegerGenerator.generateSplitInteger(1);
+    Assert.assertEquals(singleInteger.getRightDigits(), new ArrayList<>(Arrays.asList(1)));
+    Assert.assertTrue(singleInteger.getLeftDigits().isEmpty());
+
     final SplitInteger oddDigitCountSplitInteger = splitIntegerGenerator.generateSplitInteger(123456789);
     Assert.assertEquals(oddDigitCountSplitInteger.getLeftDigits(), new ArrayList(Arrays.asList(1, 2, 3, 4)));
     Assert.assertEquals(oddDigitCountSplitInteger.getRightDigits(), new ArrayList(Arrays.asList(5, 6, 7, 8, 9)));
