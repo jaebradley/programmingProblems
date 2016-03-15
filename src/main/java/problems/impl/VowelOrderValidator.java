@@ -17,15 +17,17 @@ public class VowelOrderValidator {
     );
 
     public static boolean areVowelsOrdered(final String candidate) {
-        final List<Integer> seenVowelIndices = new ArrayList<>();
+        Integer vowelIndex = null;
         for (final char c : candidate.toUpperCase(Locale.ROOT).toCharArray()) {
             final int lookupIndex = VOWELS.indexOf(c);
             if (lookupIndex > -1) {
-                seenVowelIndices.add(lookupIndex);
-                if (seenVowelIndices.size() > 1) {
-                    if (seenVowelIndices.get(seenVowelIndices.size() - 2) > seenVowelIndices.get(seenVowelIndices.size() - 1)) {
+                if (vowelIndex == null) {
+                    vowelIndex = lookupIndex;
+                } else {
+                    if (vowelIndex > lookupIndex) {
                         return false;
                     }
+                    vowelIndex = lookupIndex;
                 }
             }
         }
