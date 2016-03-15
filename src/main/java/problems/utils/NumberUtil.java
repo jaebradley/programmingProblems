@@ -42,9 +42,6 @@ public class NumberUtil {
     while(iterator.hasNext())
     {
       stringBuilder.append(iterator.next());
-      if (iterator.hasNext()){
-        stringBuilder.append(",");
-      }
     }
     return Integer.valueOf(stringBuilder.toString());
   }
