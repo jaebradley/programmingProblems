@@ -68,7 +68,7 @@ public class NumberUtilTest {
     } catch (RuntimeException e) {
       // expected
     }
-    
+
     Set<Integer> oneDivisors = new HashSet<>(Arrays.asList(1));
     Set<Integer> twoDivisors = new HashSet<>(Arrays.asList(1, 2));
     Set<Integer> tenDivisors = new HashSet<>(Arrays.asList(1, 2, 5, 10));
