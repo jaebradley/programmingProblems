@@ -55,6 +55,20 @@ public class NumberUtilTest {
 
   @Test
   public void testDivisorsForPositiveIntegers() {
+    try {
+      NumberUtil.getDivisorsForPositiveInteger(-1);
+      Assert.fail();
+    } catch (RuntimeException e) {
+      // expected
+    }
+
+    try {
+      NumberUtil.getDivisorsForPositiveInteger(0);
+      Assert.fail();
+    } catch (RuntimeException e) {
+      // expected
+    }
+    
     Set<Integer> oneDivisors = new HashSet<>(Arrays.asList(1));
     Set<Integer> twoDivisors = new HashSet<>(Arrays.asList(1, 2));
     Set<Integer> tenDivisors = new HashSet<>(Arrays.asList(1, 2, 5, 10));
