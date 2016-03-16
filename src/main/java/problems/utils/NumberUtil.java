@@ -45,10 +45,8 @@ public class NumberUtil {
 
   public static int digitsToInteger(final List<Integer> digits) {
     final StringBuilder stringBuilder = new StringBuilder();
-    final Iterator<Integer> iterator = digits.iterator();
-    while(iterator.hasNext())
-    {
-      stringBuilder.append(iterator.next());
+    for (int digit : digits) {
+      stringBuilder.append(digit);
     }
     return Integer.valueOf(stringBuilder.toString());
   }
