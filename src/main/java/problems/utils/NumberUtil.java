@@ -44,6 +44,9 @@ public class NumberUtil {
   }
 
   public static int digitsToInteger(final List<Integer> digits) {
+    if (digits.isEmpty()) {
+      throw new IllegalArgumentException("input list can not be empty");
+    }
     final StringBuilder stringBuilder = new StringBuilder();
     for (int digit : digits) {
       stringBuilder.append(digit);
