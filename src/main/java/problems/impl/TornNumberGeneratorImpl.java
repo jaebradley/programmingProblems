@@ -39,7 +39,7 @@ public class TornNumberGeneratorImpl implements TornNumberGenerator {
     }
 
     final List<Integer> tornNumbers = new ArrayList<>();
-    int squareRoot = 0;
+    int squareRoot = 1;
     int tornNumberCandidate = NumberUtil.square(squareRoot);
     while (tornNumberCandidate <= upperLimitInclusive) {
       final SplitInteger splitInteger = splitIntegerGenerator.generateSplitInteger(tornNumberCandidate);
