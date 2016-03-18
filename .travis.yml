@@ -1,3 +1,10 @@
 language: java
-sudo: false
-script: mvn test -X
+jdk:
+- openjdk7
+deploy:
+  provider: releases
+  file: target/programmingProblems-1.0-SNAPSHOT.jar
+  on:
+    repo: jbradley/programmingProblems
+    all_branches: true
+    tags: true
