@@ -54,6 +54,27 @@ public class NumberUtilTest {
   }
 
   @Test
+  public void testPositiveIntegerDigits() {
+    try {
+      NumberUtil.positiveIntegerDigitCount(-1);
+      Assert.fail();
+    } catch (IllegalArgumentException e) {
+      // expected
+    }
+
+    try {
+      NumberUtil.positiveIntegerDigitCount(0);
+      Assert.fail();
+    } catch (IllegalArgumentException e) {
+      // expected
+    }
+
+    Assert.assertEquals(NumberUtil.positiveIntegerDigits(1), new ArrayList<>(Arrays.asList(1)));
+    Assert.assertEquals(NumberUtil.positiveIntegerDigits(10), new ArrayList<>(Arrays.asList(1, 0)));
+    Assert.assertEquals(NumberUtil.positiveIntegerDigits(100), new ArrayList<>(Arrays.asList(1, 0, 0)));
+  }
+
+  @Test
   public void testDivisorsForPositiveIntegers() {
     try {
       NumberUtil.getDivisorsForPositiveInteger(-1);
