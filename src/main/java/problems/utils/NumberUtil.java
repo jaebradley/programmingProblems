@@ -43,6 +43,26 @@ public class NumberUtil {
     return digits;
   }
 
+  public static List<Integer> positiveIntegerDigits(final long positiveInt) {
+    if (positiveInt < 1) {
+      throw new IllegalArgumentException("positiveInt is less than 1");
+    }
+
+    final List<Integer> digits = new ArrayList<>();
+    final Stack<Integer> initialDigits = new Stack<>();
+    long number = positiveInt;
+    while (number > 0) {
+      initialDigits.add(Math.toIntExact(number % 10));
+      number = number / 10;
+    }
+
+    while (!initialDigits.isEmpty()) {
+      digits.add(initialDigits.pop());
+    }
+
+    return digits;
+  }
+
   public static int digitsToInteger(final List<Integer> digits) {
     if (digits.isEmpty()) {
       throw new IllegalArgumentException("input list can not be empty");
