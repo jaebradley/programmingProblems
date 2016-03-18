@@ -48,6 +48,9 @@ public class FibonacciModifiedImplTest {
             // expected
         }
 
+        Assert.assertEquals(fibonacciModified.calculateNthTerm(BigInteger.ONE, BigInteger.TEN, 1), BigInteger.ONE);
+        Assert.assertEquals(fibonacciModified.calculateNthTerm(BigInteger.ONE, BigInteger.TEN, 2), BigInteger.TEN);
+
         try {
             fibonacciModified.calculateNthTerm(BigInteger.ZERO, BigInteger.ONE, -1);
         } catch (IllegalArgumentException e) {
