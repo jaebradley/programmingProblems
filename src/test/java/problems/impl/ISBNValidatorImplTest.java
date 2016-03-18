@@ -14,7 +14,7 @@ public class ISBNValidatorImplTest {
   private final List<Integer> testValues1 = new ArrayList<>(Arrays.asList(1));
   private final InverseMultiplierListProductSumGenerator inverseMultiplierListProductSumGenerator = new InverseMultiplierListProductSumGenerator() {
     @Override public long generateInverseMultiplierListProductSum(final List<Integer> values) {
-      if (values == testValues1) {
+      if (values.equals(testValues1)) {
         return 11;
       } else {
         return 10;
@@ -39,8 +39,8 @@ public class ISBNValidatorImplTest {
       // expected
     }
 
-    Assert.assertFalse(isbnValidator.validateISBN(1));
-    Assert.assertTrue(isbnValidator.validateISBN(2));
+    Assert.assertTrue(isbnValidator.validateISBN(1));
+    Assert.assertFalse(isbnValidator.validateISBN(2));
   }
 
 }
