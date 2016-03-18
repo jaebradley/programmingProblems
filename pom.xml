@@ -27,24 +27,23 @@
                 <groupId>org.eluder.coveralls</groupId>
                 <artifactId>coveralls-maven-plugin</artifactId>
                 <version>4.1.0</version>
-                <configuration>
-                    <jacocoReports>
-                        <param>coverageReport/index.html</param>
-                    </jacocoReports>
-                </configuration>
             </plugin>
             <plugin>
                 <groupId>org.jacoco</groupId>
                 <artifactId>jacoco-maven-plugin</artifactId>
                 <version>0.7.5.201505241946</version>
-                <configuration>
-                    <outputDirectory>coverageReport</outputDirectory>
-                </configuration>
                 <executions>
                     <execution>
-                        <id>prepare-agent</id>
+                        <id>jacoco-initialize</id>
                         <goals>
                             <goal>prepare-agent</goal>
+                        </goals>
+                    </execution>
+                    <execution>
+                        <id>jacoco-site</id>
+                        <phase>verify</phase>
+                        <goals>
+                            <goal>report</goal>
                         </goals>
                     </execution>
                 </executions>

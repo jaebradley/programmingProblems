@@ -1,0 +1,138 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html id="htmlId">
+<head>
+  <title>Coverage Report :: TornNumberGeneratorImpl</title>
+  <style type="text/css">
+    @import "../../.css/coverage.css";
+  </style>
+</head>
+
+<body>
+<div class="header"></div>
+
+<div class="content">
+<div class="breadCrumbs">
+    [ <a href="../../index.html">all classes</a> ]
+    [ <a href="../index.html">problems.impl</a> ]
+</div>
+
+<h1>Coverage Summary for Class: TornNumberGeneratorImpl (problems.impl)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">TornNumberGeneratorImpl</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/ 1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (2/ 2)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (17/ 17)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<div class="sourceCode"><i>1</i>&nbsp;package problems.impl;
+<i>2</i>&nbsp;
+<i>3</i>&nbsp;import java.util.ArrayList;
+<i>4</i>&nbsp;import java.util.List;
+<i>5</i>&nbsp;
+<i>6</i>&nbsp;import problems.exceptions.TornNumberCandidateOddDigitCountException;
+<i>7</i>&nbsp;import problems.interfaces.SplitIntegerGenerator;
+<i>8</i>&nbsp;import problems.interfaces.TornNumberGenerator;
+<i>9</i>&nbsp;import problems.interfaces.TornNumberValidator;
+<i>10</i>&nbsp;import problems.utils.NumberUtil;
+<i>11</i>&nbsp;import problems.utils.SplitInteger;
+<i>12</i>&nbsp;
+<i>13</i>&nbsp;/**
+<i>14</i>&nbsp; *https://www.reddit.com/r/dailyprogrammer/comments/230m05/4142014_challenge_158_easy_the_torn_number/
+<i>15</i>&nbsp; *
+<i>16</i>&nbsp; * I had the other day in my possession a label bearing the number 3 0 2 5 in large figures.
+<i>17</i>&nbsp; * This got accidentally torn in half, so that 3 0 was on one piece and 2 5 on the other.
+<i>18</i>&nbsp; * On looking at these pieces I began to make a calculation, when I discovered this little peculiarity.
+<i>19</i>&nbsp; * If we add the 3 0 and the 2 5 together and square the sum we get as the result, the complete original number on the label!
+<i>20</i>&nbsp; * Thus, 30 added to 25 is 55, and 55 multiplied by 55 is 3025. Curious, is it not?
+<i>21</i>&nbsp; *
+<i>22</i>&nbsp; * Now, the challenge is to find another number, composed of four figures, all different,
+<i>23</i>&nbsp; * which may be divided in the middle and produce the same result.
+<i>24</i>&nbsp; */
+<i>25</i>&nbsp;
+<i>26</i>&nbsp;public class TornNumberGeneratorImpl implements TornNumberGenerator {
+<i>27</i>&nbsp;  private final TornNumberValidator tornNumberValidator;
+<i>28</i>&nbsp;  private final SplitIntegerGenerator splitIntegerGenerator;
+<i>29</i>&nbsp;
+<i>30</i>&nbsp;  public TornNumberGeneratorImpl(final TornNumberValidator tornNumberValidator,
+<b class="fc"><i>31</i>&nbsp;                                 final SplitIntegerGenerator splitIntegerGenerator) {</b>
+<b class="fc"><i>32</i>&nbsp;    this.tornNumberValidator = tornNumberValidator;</b>
+<b class="fc"><i>33</i>&nbsp;    this.splitIntegerGenerator = splitIntegerGenerator;</b>
+<b class="fc"><i>34</i>&nbsp;  }</b>
+<i>35</i>&nbsp;
+<i>36</i>&nbsp;  @Override public List&lt;Integer&gt; generateTornNumbers(final int upperLimitInclusive) {
+<b class="fc"><i>37</i>&nbsp;    if (upperLimitInclusive &lt; 1) {</b>
+<b class="fc"><i>38</i>&nbsp;      throw new IllegalArgumentException(&quot;positive upper limit&quot;);</b>
+<i>39</i>&nbsp;    }
+<i>40</i>&nbsp;
+<b class="fc"><i>41</i>&nbsp;    final List&lt;Integer&gt; tornNumbers = new ArrayList&lt;&gt;();</b>
+<b class="fc"><i>42</i>&nbsp;    int squareRoot = 1;</b>
+<b class="fc"><i>43</i>&nbsp;    int tornNumberCandidate = NumberUtil.square(squareRoot);</b>
+<b class="fc"><i>44</i>&nbsp;    while (tornNumberCandidate &lt;= upperLimitInclusive) {</b>
+<b class="fc"><i>45</i>&nbsp;      final SplitInteger splitInteger = splitIntegerGenerator.generateSplitInteger(tornNumberCandidate);</b>
+<b class="fc"><i>46</i>&nbsp;      if (tornNumberValidator.isTornNumber(splitInteger)) {</b>
+<b class="fc"><i>47</i>&nbsp;        tornNumbers.add(tornNumberCandidate);</b>
+<i>48</i>&nbsp;      }
+<i>49</i>&nbsp;
+<b class="fc"><i>50</i>&nbsp;      squareRoot++;</b>
+<b class="fc"><i>51</i>&nbsp;      tornNumberCandidate = NumberUtil.square(squareRoot);</b>
+<b class="fc"><i>52</i>&nbsp;    }</b>
+<b class="fc"><i>53</i>&nbsp;    return tornNumbers;</b>
+<i>54</i>&nbsp;  }
+<i>55</i>&nbsp;}
+</div>
+</div>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2016-03-17 21:45</div>
+</div>
+</body>
+</html>

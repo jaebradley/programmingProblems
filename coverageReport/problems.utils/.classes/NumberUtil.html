@@ -1,0 +1,154 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html id="htmlId">
+<head>
+  <title>Coverage Report :: NumberUtil</title>
+  <style type="text/css">
+    @import "../../.css/coverage.css";
+  </style>
+</head>
+
+<body>
+<div class="header"></div>
+
+<div class="content">
+<div class="breadCrumbs">
+    [ <a href="../../index.html">all classes</a> ]
+    [ <a href="../index.html">problems.utils</a> ]
+</div>
+
+<h1>Coverage Summary for Class: NumberUtil (problems.utils)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">NumberUtil</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/ 1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    85.7%
+  </span>
+  <span class="absValue">
+    (6/ 7)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    93.8%
+  </span>
+  <span class="absValue">
+    (30/ 32)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<div class="sourceCode"><i>1</i>&nbsp;package problems.utils;
+<i>2</i>&nbsp;
+<i>3</i>&nbsp;import java.util.ArrayList;
+<i>4</i>&nbsp;import java.util.HashSet;
+<i>5</i>&nbsp;import java.util.Iterator;
+<i>6</i>&nbsp;import java.util.List;
+<i>7</i>&nbsp;import java.util.Set;
+<i>8</i>&nbsp;import java.util.Stack;
+<i>9</i>&nbsp;
+<b class="nc"><i>10</i>&nbsp;public class NumberUtil {</b>
+<i>11</i>&nbsp;  public static int positiveIntegerDigitCount(final int positiveInt) {
+<b class="fc"><i>12</i>&nbsp;    if (positiveInt &lt; 1) {</b>
+<b class="fc"><i>13</i>&nbsp;      throw new IllegalArgumentException(&quot;positiveInt is less than 1&quot;);</b>
+<i>14</i>&nbsp;    }
+<b class="fc"><i>15</i>&nbsp;    return Double.valueOf(Math.log10(positiveInt)).intValue() + 1;</b>
+<i>16</i>&nbsp;  }
+<i>17</i>&nbsp;
+<i>18</i>&nbsp;  public static int square(final int squareRoot) {
+<b class="fc"><i>19</i>&nbsp;    return Math.multiplyExact(squareRoot, squareRoot);</b>
+<i>20</i>&nbsp;  }
+<i>21</i>&nbsp;
+<i>22</i>&nbsp;  public static boolean isEven(final int number) {
+<b class="fc"><i>23</i>&nbsp;    return (number % 2 == 0);</b>
+<i>24</i>&nbsp;  }
+<i>25</i>&nbsp;
+<i>26</i>&nbsp;  public static List&lt;Integer&gt; positiveIntegerDigits(final int positiveInt) {
+<b class="fc"><i>27</i>&nbsp;    if (positiveInt &lt; 1) {</b>
+<b class="nc"><i>28</i>&nbsp;      throw new IllegalArgumentException(&quot;positiveInt is less than 1&quot;);</b>
+<i>29</i>&nbsp;    }
+<i>30</i>&nbsp;
+<b class="fc"><i>31</i>&nbsp;    final List&lt;Integer&gt; digits = new ArrayList&lt;&gt;();</b>
+<b class="fc"><i>32</i>&nbsp;    final Stack&lt;Integer&gt; initialDigits = new Stack&lt;&gt;();</b>
+<b class="fc"><i>33</i>&nbsp;    int number = positiveInt;</b>
+<b class="fc"><i>34</i>&nbsp;    while (number &gt; 0) {</b>
+<b class="fc"><i>35</i>&nbsp;      initialDigits.add(number % 10);</b>
+<b class="fc"><i>36</i>&nbsp;      number = number / 10;</b>
+<i>37</i>&nbsp;    }
+<i>38</i>&nbsp;
+<b class="fc"><i>39</i>&nbsp;    while (!initialDigits.isEmpty()) {</b>
+<b class="fc"><i>40</i>&nbsp;      digits.add(initialDigits.pop());</b>
+<i>41</i>&nbsp;    }
+<i>42</i>&nbsp;
+<b class="fc"><i>43</i>&nbsp;    return digits;</b>
+<i>44</i>&nbsp;  }
+<i>45</i>&nbsp;
+<i>46</i>&nbsp;  public static int digitsToInteger(final List&lt;Integer&gt; digits) {
+<b class="fc"><i>47</i>&nbsp;    if (digits.isEmpty()) {</b>
+<b class="fc"><i>48</i>&nbsp;      throw new IllegalArgumentException(&quot;input list can not be empty&quot;);</b>
+<i>49</i>&nbsp;    }
+<b class="fc"><i>50</i>&nbsp;    final StringBuilder stringBuilder = new StringBuilder();</b>
+<b class="fc"><i>51</i>&nbsp;    for (int digit : digits) {</b>
+<b class="fc"><i>52</i>&nbsp;      stringBuilder.append(digit);</b>
+<b class="fc"><i>53</i>&nbsp;    }</b>
+<b class="fc"><i>54</i>&nbsp;    return Integer.valueOf(stringBuilder.toString());</b>
+<i>55</i>&nbsp;  }
+<i>56</i>&nbsp;
+<i>57</i>&nbsp;  public static Set&lt;Integer&gt; getDivisorsForPositiveInteger(final int positiveInteger) {
+<b class="fc"><i>58</i>&nbsp;    if (positiveInteger &lt; 1) {</b>
+<b class="fc"><i>59</i>&nbsp;      throw new RuntimeException(&quot;positive integer must be greater than 0&quot;);</b>
+<i>60</i>&nbsp;    }
+<i>61</i>&nbsp;
+<b class="fc"><i>62</i>&nbsp;    final Set&lt;Integer&gt; divisors = new HashSet&lt;&gt;();</b>
+<b class="fc"><i>63</i>&nbsp;    for (int candidateDivisor = 1; candidateDivisor &lt;= Math.ceil(Math.sqrt(positiveInteger)); candidateDivisor++) {</b>
+<b class="fc"><i>64</i>&nbsp;      if (positiveInteger % candidateDivisor == 0) {</b>
+<b class="fc"><i>65</i>&nbsp;        divisors.add(candidateDivisor);</b>
+<b class="fc"><i>66</i>&nbsp;        divisors.add(new Double(positiveInteger / candidateDivisor).intValue());</b>
+<i>67</i>&nbsp;      }
+<i>68</i>&nbsp;    }
+<b class="fc"><i>69</i>&nbsp;    return divisors;</b>
+<i>70</i>&nbsp;  }
+<i>71</i>&nbsp;}
+</div>
+</div>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2016-03-17 21:45</div>
+</div>
+</body>
+</html>

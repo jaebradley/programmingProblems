@@ -1,0 +1,134 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html id="htmlId">
+<head>
+  <title>Coverage Report :: FractionAdderImpl</title>
+  <style type="text/css">
+    @import "../../.css/coverage.css";
+  </style>
+</head>
+
+<body>
+<div class="header"></div>
+
+<div class="content">
+<div class="breadCrumbs">
+    [ <a href="../../index.html">all classes</a> ]
+    [ <a href="../index.html">problems.impl</a> ]
+</div>
+
+<h1>Coverage Summary for Class: FractionAdderImpl (problems.impl)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">FractionAdderImpl</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/ 1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (2/ 2)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    92.3%
+  </span>
+  <span class="absValue">
+    (12/ 13)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<div class="sourceCode"><i>1</i>&nbsp;package problems.impl;
+<i>2</i>&nbsp;
+<i>3</i>&nbsp;import java.util.Collections;
+<i>4</i>&nbsp;import java.util.HashSet;
+<i>5</i>&nbsp;import java.util.Set;
+<i>6</i>&nbsp;
+<i>7</i>&nbsp;import problems.interfaces.FractionAdder;
+<i>8</i>&nbsp;import problems.utils.Fraction;
+<i>9</i>&nbsp;import problems.utils.NumberUtil;
+<i>10</i>&nbsp;
+<i>11</i>&nbsp;/**
+<i>12</i>&nbsp; * Implementation for adding fractions
+<i>13</i>&nbsp; */
+<i>14</i>&nbsp;
+<b class="fc"><i>15</i>&nbsp;public class FractionAdderImpl implements FractionAdder {</b>
+<i>16</i>&nbsp;  /**
+<i>17</i>&nbsp;   * Multiplies the numerator from the first fraction and the denominator of the second fraction, and multiplies the
+<i>18</i>&nbsp;   * numerator from the second fraction and the denominator from the first fraction, and sums these two values
+<i>19</i>&nbsp;   * to get the common numerator.
+<i>20</i>&nbsp;   *
+<i>21</i>&nbsp;   * Multiplies denominators from both fractions to get the common denominator. Then, finds the greatest common divisor
+<i>22</i>&nbsp;   * for the common numerator and denominator. If none exists, it returns a new fraction with the common numerator / denominator
+<i>23</i>&nbsp;   * as the appropriate value. If a greatest common divisor exists, it divides both values by this divisor and returns a
+<i>24</i>&nbsp;   * new fraction with the reduced values.
+<i>25</i>&nbsp;   *
+<i>26</i>&nbsp;   * @param firstFraction one of the fractions to be summed
+<i>27</i>&nbsp;   * @param secondFraction one of the fractions to be summed
+<i>28</i>&nbsp;   * @return fraction object in fully reduced form
+<i>29</i>&nbsp;   */
+<i>30</i>&nbsp;  @Override public Fraction sumFractions(final Fraction firstFraction, final Fraction secondFraction) {
+<b class="fc"><i>31</i>&nbsp;    final int combinedNumerator = firstFraction.getNumerator() * secondFraction.getDenominator() + firstFraction.getDenominator() * secondFraction.getNumerator();</b>
+<b class="fc"><i>32</i>&nbsp;    final int combinedDenominator = firstFraction.getDenominator() * secondFraction.getDenominator();</b>
+<b class="fc"><i>33</i>&nbsp;    final Set&lt;Integer&gt; numeratorDivisors = NumberUtil.getDivisorsForPositiveInteger(Math.abs(combinedNumerator));</b>
+<b class="fc"><i>34</i>&nbsp;    final Set&lt;Integer&gt; denominatorDivisors = NumberUtil.getDivisorsForPositiveInteger(Math.abs(combinedDenominator));</b>
+<b class="fc"><i>35</i>&nbsp;    final Set&lt;Integer&gt; commonDivisors = new HashSet&lt;&gt;(numeratorDivisors);</b>
+<b class="fc"><i>36</i>&nbsp;    commonDivisors.retainAll(denominatorDivisors);</b>
+<b class="fc"><i>37</i>&nbsp;    if (commonDivisors.isEmpty()) {</b>
+<b class="nc"><i>38</i>&nbsp;      return new Fraction(</b>
+<i>39</i>&nbsp;          combinedNumerator,
+<i>40</i>&nbsp;          combinedDenominator
+<i>41</i>&nbsp;      );
+<i>42</i>&nbsp;    }
+<i>43</i>&nbsp;
+<b class="fc"><i>44</i>&nbsp;    final int greatestCommonDivisor = Collections.max(commonDivisors);</b>
+<b class="fc"><i>45</i>&nbsp;    return new Fraction(</b>
+<b class="fc"><i>46</i>&nbsp;        new Double(combinedNumerator / greatestCommonDivisor).intValue(),</b>
+<b class="fc"><i>47</i>&nbsp;        new Double(combinedDenominator / greatestCommonDivisor).intValue()</b>
+<i>48</i>&nbsp;    );
+<i>49</i>&nbsp;
+<i>50</i>&nbsp;  }
+<i>51</i>&nbsp;}
+</div>
+</div>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2016-03-17 21:45</div>
+</div>
+</body>
+</html>
