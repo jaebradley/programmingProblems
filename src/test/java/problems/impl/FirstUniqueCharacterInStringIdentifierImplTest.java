@@ -14,5 +14,18 @@ public class FirstUniqueCharacterInStringIdentifierImplTest {
         final Character expectedCharacter = new Character('b');
         final Character returnedCharacter = firstUniqueCharacterInStringIdentifier.identifyFirstUniqueCharacterInString(testString);
         Assert.assertEquals(expectedCharacter, returnedCharacter);
+        try {
+            firstUniqueCharacterInStringIdentifier.identifyFirstUniqueCharacterInString("");
+            Assert.fail();
+        } catch (NoUniqueCharactersException e) {
+            // expected
+        }
+
+        try {
+            firstUniqueCharacterInStringIdentifier.identifyFirstUniqueCharacterInString("aaaa");
+            Assert.fail();
+        } catch (NoUniqueCharactersException e) {
+            // expected
+        }
     }
 }
