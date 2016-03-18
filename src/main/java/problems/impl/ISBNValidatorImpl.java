@@ -3,21 +3,16 @@ package problems.impl;
 import java.util.List;
 
 import problems.interfaces.ISBNValidator;
+import problems.interfaces.InverseMultiplierListProductSumGenerator;
 import problems.utils.NumberUtil;
 
 public class ISBNValidatorImpl implements ISBNValidator {
-  private static final int ISBN_NUMBER_LENGTH = 10;
 
-  @Override
-  public long sumISBNCandidateDigits(final List<Integer> candidateDigits) {
-    if (candidateDigits.size() != ISBN_NUMBER_LENGTH) {
-      throw new IllegalArgumentException(String.format("candidate must have exactly %s digits", ISBN_NUMBER_LENGTH));
-    }
-    long digitSum = 0;
-    for (int index = ISBN_NUMBER_LENGTH; index > 0; index--) {
-      digitSum += index * candidateDigits.get(index);
-    }
-    return digitSum;
+  private final InverseMultiplierListProductSumGenerator inverseMultiplierListProductSumGenerator;
+
+  public ISBNValidatorImpl(
+      final InverseMultiplierListProductSumGenerator inverseMultiplierListProductSumGenerator) {
+    this.inverseMultiplierListProductSumGenerator = inverseMultiplierListProductSumGenerator;
   }
 
   @Override
@@ -26,6 +21,6 @@ public class ISBNValidatorImpl implements ISBNValidator {
       throw new IllegalArgumentException("candidate must be positive value");
     }
     final List<Integer> digits = NumberUtil.positiveIntegerDigits(candidate);
-    return sumISBNCandidateDigits(digits) % 11 == 0;
+    return inverseMultiplierListProductSumGenerator.generateInverseMultiplierListProductSum(digits) % 11 == 0;
   }
 }
