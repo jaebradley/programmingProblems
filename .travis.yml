@@ -9,6 +9,6 @@ deploy:
   on:
     repo: jaebradley/programmingProblems
     all_branches: true
-    tags: true
+    tags: false
 after_success:
   - mvn clean test jacoco:report coveralls:report -X
