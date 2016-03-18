@@ -19,6 +19,10 @@ public class FractionAdderImplTest {
     final Fraction anotherResult = fractionAdder.sumFractions(firstFraction, thirdFraction);
     Assert.assertEquals(anotherResult.getNumerator(), -1);
     Assert.assertEquals(anotherResult.getDenominator(), 4);
+    final Fraction fourthFraction = new Fraction(1, 3);
+    final Fraction noCommonDivisor = fractionAdder.sumFractions(fourthFraction, fourthFraction);
+    Assert.assertEquals(noCommonDivisor.getNumerator(), 2);
+    Assert.assertEquals(noCommonDivisor.getDenominator(), 3);
   }
 
 }
