@@ -10,4 +10,4 @@ deploy:
     repo: jbradley/programmingProblems
     all_branches: true
     tags: true
-script: mvn clean test
+script: mvn clean test -X
