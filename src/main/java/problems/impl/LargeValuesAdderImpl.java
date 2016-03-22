@@ -54,7 +54,7 @@ public class LargeValuesAdderImpl implements LargeValuesAdder {
     @Override
     public int numericalValueForIndex(final int index, final String largeValues) {
         if (index < largeValues.length()) {
-            final Character firstChar = largeValues.charAt(index);
+            final Character firstChar = largeValues.charAt(largeValues.length() - 1 - index);
             if (!Character.isDigit(firstChar)) {
                 throw new IllegalArgumentException("character is not digit");
             }

@@ -18,5 +18,6 @@ public class LargeValuesAdderImplTest {
         Assert.assertEquals(largeValuesAdder.largeValuesAdder(largeValue1, largeValue2), "1098");
         Assert.assertEquals(largeValuesAdder.largeValuesAdder(largeValue3, largeValue3), "2");
         Assert.assertEquals(largeValuesAdder.largeValuesAdder("", ""), "");
+        Assert.assertEquals(largeValuesAdder.largeValuesAdder("109", "1"), "110");
     }
 }
