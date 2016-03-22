@@ -7,12 +7,12 @@ import problems.interfaces.LargeValuesAdder;
 public class LargeValuesAdderImpl implements LargeValuesAdder {
 
     /**
-     * Returns a list of integers that represents the addition outcome after adding two large values represented by
-     * a list of characters.
+     * Returns a String that represents the addition outcome after adding two large values represented by
+     * two Strings.
      *
-     * @param largeValues1 a list of characters, which represent a large numerical value
-     * @param largeValues2 a list of characters, which represent a large numerical value
-     * @return list of integers that represents the addition outcome after adding two large values
+     * @param largeValues1 a String, which represent a large numerical value
+     * @param largeValues2 a String, which represent a large numerical value
+     * @return String that represents the addition outcome after adding two large values
      */
     @Override
     public String largeValuesAdder(final String largeValues1, final String largeValues2) {
