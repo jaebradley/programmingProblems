@@ -20,7 +20,17 @@ public class LargeValuesAdderImpl implements LargeValuesAdder {
         final Stack<Integer> additionOutcomes = new Stack<>();
         boolean hasCarryValue = false;
         for (int index = 0; index < maxSize; index++) {
-            int additionValue = numericalValueForIndex(index, largeValues1) + numericalValueForIndex(index, largeValues2);
+            int firstCharNumericalValue = 0;
+            if (index < largeValues1.length()) {
+                firstCharNumericalValue = numericalValueForIndex(index, largeValues1);
+            }
+
+            int secondCharNumericalValue = 0;
+            if (index < largeValues2.length()) {
+                secondCharNumericalValue = numericalValueForIndex(index, largeValues2);
+            }
+            int additionValue = firstCharNumericalValue + secondCharNumericalValue;
+
             if (hasCarryValue) {
                 additionValue++;
             }
@@ -53,13 +63,14 @@ public class LargeValuesAdderImpl implements LargeValuesAdder {
      */
     @Override
     public int numericalValueForIndex(final int index, final String largeValues) {
-        if (index < largeValues.length()) {
-            final Character firstChar = largeValues.charAt(largeValues.length() - 1 - index);
-            if (!Character.isDigit(firstChar)) {
-                throw new IllegalArgumentException("character is not digit");
-            }
-            return Character.getNumericValue(firstChar);
+        if (index >= largeValues.length()) {
+            throw new IllegalArgumentException("specified index is not less than the length of the input string");
         }
-        return 0;
+
+        final Character firstChar = largeValues.charAt(largeValues.length() - 1 - index);
+        if (!Character.isDigit(firstChar)) {
+            throw new IllegalArgumentException("character is not digit");
+        }
+        return Character.getNumericValue(firstChar);
     }
 }
