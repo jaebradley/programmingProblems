@@ -1,9 +1,7 @@
 package problems.interfaces;
 
-import java.util.List;
-
 public interface LargeValuesAdder {
-    List<Integer> largeValuesAdder(final List<Character> largeValues1, final List<Character> largeValues2);
+    String largeValuesAdder(final String largeValues1, final String largeValues2);
 
-    int numericalValueForIndex(final int index, List<Character> largeValues);
+    int numericalValueForIndex(final int index, String largeValues);
 }

@@ -1,10 +1,8 @@
 package problems.impl;
 
-import problems.interfaces.LargeValuesAdder;
-
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Stack;
+
+import problems.interfaces.LargeValuesAdder;
 
 public class LargeValuesAdderImpl implements LargeValuesAdder {
 
@@ -17,8 +15,8 @@ public class LargeValuesAdderImpl implements LargeValuesAdder {
      * @return list of integers that represents the addition outcome after adding two large values
      */
     @Override
-    public List<Integer> largeValuesAdder(final List<Character> largeValues1, final List<Character> largeValues2) {
-        final int maxSize = Math.max(largeValues1.size(), largeValues2.size());
+    public String largeValuesAdder(final String largeValues1, final String largeValues2) {
+        final int maxSize = Math.max(largeValues1.length(), largeValues2.length());
         final Stack<Integer> additionOutcomes = new Stack<>();
         boolean hasCarryValue = false;
         for (int index = 0; index < maxSize; index++) {
@@ -40,11 +38,11 @@ public class LargeValuesAdderImpl implements LargeValuesAdder {
             additionOutcomes.push(1);
         }
 
-        final List<Integer> additionOutput = new ArrayList<>();
+        final StringBuilder stringBuilder = new StringBuilder();
         while (!additionOutcomes.empty()) {
-            additionOutput.add(additionOutcomes.pop());
+            stringBuilder.append(additionOutcomes.pop());
         }
-        return additionOutput;
+        return stringBuilder.toString();
     }
 
     /**
@@ -54,9 +52,9 @@ public class LargeValuesAdderImpl implements LargeValuesAdder {
      * @return an int representing the numerical value for a given index value
      */
     @Override
-    public int numericalValueForIndex(final int index, final List<Character> largeValues) {
-        if (index < largeValues.size()) {
-            final Character firstChar = largeValues.get(index);
+    public int numericalValueForIndex(final int index, final String largeValues) {
+        if (index < largeValues.length()) {
+            final Character firstChar = largeValues.charAt(index);
             if (!Character.isDigit(firstChar)) {
                 throw new IllegalArgumentException("character is not digit");
             }
