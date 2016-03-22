@@ -3,14 +3,14 @@ package problems.impl;
 import java.util.List;
 
 import problems.interfaces.DigitalRootCalculator;
-import problems.interfaces.ListSummation;
+import problems.interfaces.ListSummator;
 import problems.utils.NumberUtil;
 
 public class DigitalRootCalculatorImpl implements DigitalRootCalculator{
-  private final ListSummation listSummation;
+  private final ListSummator listSummator;
 
-  public DigitalRootCalculatorImpl(final ListSummation listSummation) {
-    this.listSummation = listSummation;
+  public DigitalRootCalculatorImpl(final ListSummator listSummator) {
+    this.listSummator = listSummator;
   }
 
   @Override public long calculateDigitalRoot(final long value) {
@@ -18,10 +18,10 @@ public class DigitalRootCalculatorImpl implements DigitalRootCalculator{
       throw new IllegalArgumentException("input value must be non-negative");
     }
     List<Integer> digits = NumberUtil.positiveIntegerDigits(value);
-    long listSum = listSummation.sumList(digits);
+    long listSum = listSummator.sumList(digits);
     while (listSum > 9) {
       digits = NumberUtil.positiveIntegerDigits(listSum);
-      listSum = listSummation.sumList(digits);
+      listSum = listSummator.sumList(digits);
     }
     return listSum;
   }

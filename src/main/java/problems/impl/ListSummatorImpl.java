@@ -2,9 +2,9 @@ package problems.impl;
 
 import java.util.List;
 
-import problems.interfaces.ListSummation;
+import problems.interfaces.ListSummator;
 
-public class ListSummationImpl implements ListSummation {
+public class ListSummatorImpl implements ListSummator {
   @Override
   public long sumList(final List<Integer> numbers) {
     long listSum = 0;
