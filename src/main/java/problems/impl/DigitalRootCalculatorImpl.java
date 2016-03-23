@@ -14,6 +14,16 @@ public class DigitalRootCalculatorImpl implements DigitalRootCalculator{
     this.digitsIdentifier = digitsIdentifier;
   }
 
+  /**
+   * The digital root of a non-negative integer is the single digit value obtained by an iterative process of summing
+   * digits, on each iteration using the result from the previous iteration to compute a digit sum.
+   * The process continues until a single-digit number is reached.
+   *
+   * https://en.wikipedia.org/wiki/Digital_root
+   *
+   * @param value number
+   * @return digital root of the inputted number
+   */
   @Override
   public long calculateDigitalRoot(final long value) {
     long digitSum = listSummator.sumList(digitsIdentifier.identifyDigits(value));
