@@ -27,6 +27,8 @@ public class LargeValuesAdderImplTest {
         largeValuesAdder.numericalValueForIndex(0, "A");
         largeValuesAdder.numericalValueForIndex(0, "a");
         largeValuesAdder.numericalValueForIndex(0, "/");
+        largeValuesAdder.largeValuesAdder("A", "1");
+        largeValuesAdder.largeValuesAdder("1", "B");
     }
 
     @Test

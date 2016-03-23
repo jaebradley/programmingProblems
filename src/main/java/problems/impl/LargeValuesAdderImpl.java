@@ -67,10 +67,10 @@ public class LargeValuesAdderImpl implements LargeValuesAdder {
             throw new IllegalArgumentException("specified index is not less than the length of the input string");
         }
 
-        final Character firstChar = largeValues.charAt(largeValues.length() - 1 - index);
-        if (!Character.isDigit(firstChar)) {
+        final Character c = largeValues.charAt(largeValues.length() - 1 - index);
+        if (!Character.isDigit(c)) {
             throw new IllegalArgumentException("character is not digit");
         }
-        return Character.getNumericValue(firstChar);
+        return Character.getNumericValue(c);
     }
 }
