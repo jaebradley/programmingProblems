@@ -21,14 +21,36 @@ public class LargeValuesAdderImplTest {
         Assert.assertEquals(largeValuesAdder.largeValuesAdder("109", "1"), "110");
     }
 
-    @Test(expected = IllegalArgumentException.class)
+    @Test
     public void itShouldThrowException() {
-        largeValuesAdder.numericalValueForIndex(2, largeValue1);
-        largeValuesAdder.numericalValueForIndex(0, "A");
-        largeValuesAdder.numericalValueForIndex(0, "a");
-        largeValuesAdder.numericalValueForIndex(0, "/");
-        largeValuesAdder.largeValuesAdder("A", "1");
-        largeValuesAdder.largeValuesAdder("1", "B");
+        try {
+            largeValuesAdder.numericalValueForIndex(2, largeValue1);
+            Assert.fail();
+        } catch (IllegalArgumentException e) {
+            // expected
+        }
+
+        try {
+            largeValuesAdder.numericalValueForIndex(0, "A");
+            Assert.fail();
+        } catch (IllegalArgumentException e) {
+            // expected
+        }
+
+        try {
+            largeValuesAdder.numericalValueForIndex(0, "a");
+            Assert.fail();
+        } catch (IllegalArgumentException e) {
+            // expected
+        }
+
+        try {
+            largeValuesAdder.numericalValueForIndex(0, "/");
+            Assert.fail();
+        } catch (IllegalArgumentException e) {
+            // expected
+        }
+
     }
 
     @Test
