@@ -34,13 +34,6 @@ public class FractionAdderImpl implements FractionAdder {
     final Set<Integer> denominatorDivisors = NumberUtil.getDivisorsForPositiveInteger(Math.abs(combinedDenominator));
     final Set<Integer> commonDivisors = new HashSet<>(numeratorDivisors);
     commonDivisors.retainAll(denominatorDivisors);
-    if (commonDivisors.isEmpty()) {
-      return new Fraction(
-          combinedNumerator,
-          combinedDenominator
-      );
-    }
-
     final int greatestCommonDivisor = Collections.max(commonDivisors);
     return new Fraction(
         new Double(combinedNumerator / greatestCommonDivisor).intValue(),
