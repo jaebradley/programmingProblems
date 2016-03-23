@@ -30,7 +30,7 @@ public class DigitalRootCalculatorImpl implements DigitalRootCalculator{
     while (digitSum > 9) {
       long previousDigitSum = digitSum;
       digitSum = listSummator.sumList(digitsIdentifier.identifyDigits(digitSum));
-      if (previousDigitSum >= digitSum) {
+      if (previousDigitSum <= digitSum) {
         throw new RuntimeException("digital root computation not decreasing");
       }
     }

@@ -73,6 +73,6 @@ public class DigitalRootCalculatorImplTest {
 
   @Test
   public void itShouldCalculate() {
-    Assert.assertEquals(expectedBehaviorDigitalRootCalculator.calculateDigitalRoot(10), 1);
+    Assert.assertEquals(expectedBehaviorDigitalRootCalculator.calculateDigitalRoot(1), 1);
   }
 }
