@@ -5,18 +5,20 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Locale;
 
+import problems.interfaces.VowelOrderValidator;
+
 /**
  * Validate that a string's vowels are ordered in alphabetical order (A before E before I before O before U before Y)
  *
  * Codereview Stackexchange thread: http://codereview.stackexchange.com/questions/119205/vowels-in-a-string-are-in-alphabetical-order
  */
 
-public class VowelOrderValidator {
+public class VowelOrderValidatorImpl implements VowelOrderValidator {
     private static final List<Character> VOWELS = new ArrayList<>(
             Arrays.asList('A', 'E', 'I', 'O', 'U', 'Y')
     );
 
-    public static boolean areVowelsOrdered(final String candidate) {
+    public boolean areVowelsOrdered(final String candidate) {
         Integer vowelIndex = null;
         for (final char c : candidate.toUpperCase(Locale.ROOT).toCharArray()) {
             final int lookupIndex = VOWELS.indexOf(c);
