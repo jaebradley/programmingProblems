@@ -6,7 +6,11 @@ import java.util.List;
 import org.junit.Assert;
 import org.junit.Test;
 
-public class BracketPairsValidatorTest {
+import problems.interfaces.BracketPairsValidator;
+
+public class BracketPairsValidatorImplTest {
+
+  private final BracketPairsValidator bracketPairsValidator = new BracketPairsValidatorImpl();
 
   @Test
   public void testBracketValidation() {
@@ -20,7 +24,7 @@ public class BracketPairsValidatorTest {
     testStrings.add("{}[]()");
     testStrings.add("foo");
     for (final String testString : testStrings) {
-      Assert.assertTrue(BracketPairsValidator.validBracketPairs(testString));
+      Assert.assertTrue(bracketPairsValidator.validBracketPairs(testString));
     }
   }
 
@@ -37,7 +41,7 @@ public class BracketPairsValidatorTest {
     testStrings.add("{}[](");
     testStrings.add("{f}[o](o");
     for (final String testString : testStrings) {
-      Assert.assertFalse(BracketPairsValidator.validBracketPairs(testString));
+      Assert.assertFalse(bracketPairsValidator.validBracketPairs(testString));
     }
   }
 

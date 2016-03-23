@@ -41,11 +41,8 @@ public class StringCharactersInAlphabeticalOrderEvaluatorImpl implements StringC
       return AlphabeticalOrderState.IN_ALPHABETICAL_ORDER;
     }
 
-    if (fromZtoA) {
+    else {
       return AlphabeticalOrderState.IN_REVERSE_ALPHABETICAL_ORDER;
     }
-
-    throw new RuntimeException("unexpected character string");
-
   }
 }
