@@ -62,17 +62,6 @@ public class NumberUtil {
     return digits;
   }
 
-  public static int digitsToInteger(final List<Integer> digits) {
-    if (digits.isEmpty()) {
-      throw new IllegalArgumentException("input list can not be empty");
-    }
-    final StringBuilder stringBuilder = new StringBuilder();
-    for (int digit : digits) {
-      stringBuilder.append(digit);
-    }
-    return Integer.valueOf(stringBuilder.toString());
-  }
-
   public static Set<Integer> getDivisorsForPositiveInteger(final int positiveInteger) {
     if (positiveInteger < 1) {
       throw new RuntimeException("positive integer must be greater than 0");
