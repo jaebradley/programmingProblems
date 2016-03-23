@@ -65,10 +65,21 @@ public class DigitalRootCalculatorImplTest {
   };
   private final DigitalRootCalculator expectedBehaviorDigitalRootCalculator = new DigitalRootCalculatorImpl(expectedBehaviorListSummator, expectedBehaviorDigitsIdentifier);
 
-  @Test(expected = RuntimeException.class)
+  @Test
   public void itShouldThrowException() {
-    negativeDigitalRootCalculator.calculateDigitalRoot(10);
-    constantPositiveDigitalRootCalculator.calculateDigitalRoot(10);
+    try {
+      negativeDigitalRootCalculator.calculateDigitalRoot(10);
+      Assert.fail();
+    } catch (RuntimeException e) {
+      // expected
+    }
+
+    try {
+      constantPositiveDigitalRootCalculator.calculateDigitalRoot(10);
+      Assert.fail();
+    } catch (RuntimeException e) {
+      // expected
+    }
   }
 
   @Test
