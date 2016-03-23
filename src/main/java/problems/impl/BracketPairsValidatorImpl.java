@@ -4,7 +4,9 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Stack;
 
-public class BracketPairsValidator {
+import problems.interfaces.BracketPairsValidator;
+
+public class BracketPairsValidatorImpl implements BracketPairsValidator {
 
   public static final char OPEN_SQUARE_BRACKET = '[';
   public static final char CLOSED_SQUARE_BRACKET = ']';
@@ -15,7 +17,7 @@ public class BracketPairsValidator {
   public static final char OPEN_PARENTHESIS = '(';
   public static final char CLOSED_PARENTHESIS = ')';
 
-  public static boolean validBracketPairs(final String candidate) {
+  public boolean validBracketPairs(final String candidate) {
     final char[] chars = candidate.toCharArray();
     final Stack<Character> bracketStack = new Stack<>();
     final Map<Character, Character> bracketMap = new HashMap<>();
