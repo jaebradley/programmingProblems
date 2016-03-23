@@ -21,7 +21,7 @@ public class TornNumberValidatorImpl implements TornNumberValidator {
 
     final List<Integer> allDigits = new ArrayList<>(splitInteger.getLeftDigits());
     allDigits.addAll(splitInteger.getRightDigits());
-    final int leftAndRightValuesSum = digitCollectionConverter.convertDigitCollectionToInteger(splitInteger.getLeftDigits()) + digitCollectionConverter.convertDigitCollectionToInteger(splitInteger.getRightDigits();
+    final int leftAndRightValuesSum = digitCollectionConverter.convertDigitCollectionToInteger(splitInteger.getLeftDigits()) + digitCollectionConverter.convertDigitCollectionToInteger(splitInteger.getRightDigits());
     return digitCollectionConverter.convertDigitCollectionToInteger(allDigits) == Math.multiplyExact(leftAndRightValuesSum, leftAndRightValuesSum);
   }
 }
