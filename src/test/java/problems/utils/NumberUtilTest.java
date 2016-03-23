@@ -12,6 +12,12 @@ import org.junit.Test;
 public class NumberUtilTest {
 
   @Test
+  public void testConstruction() {
+    final NumberUtil numberUtil = new NumberUtil();
+    Assert.assertNotNull(numberUtil);
+  }
+
+  @Test
   public void testPositiveIntegerDigitCount() {
     try {
       NumberUtil.positiveIntegerDigitCount(-1);
@@ -56,14 +62,14 @@ public class NumberUtilTest {
   @Test
   public void testPositiveIntegerDigits() {
     try {
-      NumberUtil.positiveIntegerDigitCount(-1);
+      NumberUtil.positiveIntegerDigits(-1);
       Assert.fail();
     } catch (IllegalArgumentException e) {
       // expected
     }
 
     try {
-      NumberUtil.positiveIntegerDigitCount(0);
+      NumberUtil.positiveIntegerDigits(0);
       Assert.fail();
     } catch (IllegalArgumentException e) {
       // expected
