@@ -1,28 +1,32 @@
 package problems.impl;
 
-import java.util.List;
-
 import problems.interfaces.DigitalRootCalculator;
+import problems.interfaces.DigitsIdentifier;
 import problems.interfaces.ListSummator;
-import problems.utils.NumberUtil;
 
 public class DigitalRootCalculatorImpl implements DigitalRootCalculator{
   private final ListSummator listSummator;
+  private final DigitsIdentifier digitsIdentifier;
 
-  public DigitalRootCalculatorImpl(final ListSummator listSummator) {
+  public DigitalRootCalculatorImpl(final ListSummator listSummator,
+                                   final DigitsIdentifier digitsIdentifier) {
     this.listSummator = listSummator;
+    this.digitsIdentifier = digitsIdentifier;
   }
 
-  @Override public long calculateDigitalRoot(final long value) {
-    if (value < 0) {
-      throw new IllegalArgumentException("input value must be non-negative");
+  @Override
+  public long calculateDigitalRoot(final long value) {
+    long digitSum = listSummator.sumList(digitsIdentifier.identifyDigits(value));
+    while (digitSum > 9) {
+      long previousDigitSum = digitSum;
+      digitSum = listSummator.sumList(digitsIdentifier.identifyDigits(digitSum));
+      if (previousDigitSum >= digitSum) {
+        throw new RuntimeException("digital root computation not decreasing");
+      }
     }
-    List<Integer> digits = NumberUtil.positiveIntegerDigits(value);
-    long listSum = listSummator.sumList(digits);
-    while (listSum > 9) {
-      digits = NumberUtil.positiveIntegerDigits(listSum);
-      listSum = listSummator.sumList(digits);
+    if (digitSum < 0) {
+      throw new RuntimeException("computed digital root is negative");
     }
-    return listSum;
+    return digitSum;
   }
 }
