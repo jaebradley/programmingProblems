@@ -3,7 +3,6 @@ package problems.utils;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 import org.junit.Assert;
@@ -39,24 +38,6 @@ public class NumberUtilTest {
     Assert.assertEquals(NumberUtil.positiveIntegerDigitCount(10), 2);
     Assert.assertEquals(NumberUtil.positiveIntegerDigitCount(99), 2);
     Assert.assertEquals(NumberUtil.positiveIntegerDigitCount(100), 3);
-  }
-
-  @Test
-  public void testSquare() {
-    Assert.assertEquals(NumberUtil.square(-2), 4);
-    Assert.assertEquals(NumberUtil.square(-1), 1);
-    Assert.assertEquals(NumberUtil.square(0), 0);
-    Assert.assertEquals(NumberUtil.square(1), 1);
-    Assert.assertEquals(NumberUtil.square(2), 4);
-  }
-
-  @Test
-  public void testIsEven() {
-    Assert.assertTrue(NumberUtil.isEven(-2));
-    Assert.assertFalse(NumberUtil.isEven(-1));
-    Assert.assertTrue(NumberUtil.isEven(0));
-    Assert.assertFalse(NumberUtil.isEven(1));
-    Assert.assertTrue(NumberUtil.isEven(2));
   }
 
   @Test

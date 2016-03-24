@@ -14,14 +14,6 @@ public class NumberUtil {
     return Double.valueOf(Math.log10(positiveInt)).intValue() + 1;
   }
 
-  public static int square(final int squareRoot) {
-    return Math.multiplyExact(squareRoot, squareRoot);
-  }
-
-  public static boolean isEven(final int number) {
-    return (number % 2 == 0);
-  }
-
   public static List<Integer> positiveIntegerDigits(final int positiveInt) {
     if (positiveInt < 1) {
       throw new IllegalArgumentException("positiveInt is less than 1");

@@ -1,9 +1,9 @@
 package problems.impl;
 
+import java.util.Stack;
+
 import problems.interfaces.ReverseWordsInString;
 import problems.interfaces.ReverseWordsInStringUsingStack;
-
-import java.util.Stack;
 
 /**
  * Reverse the words in a string, while maintaining the order of the words in the string.

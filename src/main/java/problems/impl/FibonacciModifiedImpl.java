@@ -1,8 +1,8 @@
 package problems.impl;
 
-import problems.interfaces.FibonacciModified;
-
 import java.math.BigInteger;
+
+import problems.interfaces.FibonacciModified;
 
 /**
  * Problem from https://www.hackerrank.com/challenges/fibonacci-modified

@@ -1,8 +1,8 @@
 package problems.impl;
 
-import problems.interfaces.ReverseWordOrderInString;
-
 import java.util.Stack;
+
+import problems.interfaces.ReverseWordOrderInString;
 
 public class ReverseWordOrderInStringImpl implements ReverseWordOrderInString {
 
