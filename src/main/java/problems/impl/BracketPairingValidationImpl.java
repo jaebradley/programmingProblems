@@ -1,12 +1,11 @@
 package problems.impl;
 
-
-import problems.interfaces.BracketPairingValidation;
-
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.Stack;
+
+import problems.interfaces.BracketPairingValidation;
 
 /**
  * Implements a bracket pair validation interface that checks if a string has valid open/closed bracket combinations

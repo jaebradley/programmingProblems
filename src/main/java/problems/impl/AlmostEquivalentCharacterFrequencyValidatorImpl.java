@@ -1,8 +1,9 @@
 package problems.impl;
 
-import problems.interfaces.AlmostEquivalentCharacterFrequencyValidator;
+import java.util.HashMap;
+import java.util.Map;
 
-import java.util.*;
+import problems.interfaces.AlmostEquivalentCharacterFrequencyValidator;
 
 public class AlmostEquivalentCharacterFrequencyValidatorImpl implements AlmostEquivalentCharacterFrequencyValidator {
     public boolean validateAlmostEquivalentCharacterFrequency(final String candidate) {
