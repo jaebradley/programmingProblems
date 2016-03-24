@@ -6,39 +6,57 @@ import java.util.Arrays;
 import org.junit.Assert;
 import org.junit.Test;
 
+import problems.interfaces.DigitCountCalculator;
 import problems.interfaces.SplitIntegerGenerator;
 import problems.utils.SplitInteger;
 
 public class SplitIntegerGeneratorImplTest {
-  private final SplitIntegerGenerator splitIntegerGenerator = new SplitIntegerGeneratorImpl();
+  private final DigitCountCalculator oddDigitCountCalculator = new DigitCountCalculator() {
+    @Override public int calculateDigitCount(final int number) {
+      return 1;
+    }
+  };
+  private final DigitCountCalculator evenDigitCountCalculator = new DigitCountCalculator() {
+    @Override public int calculateDigitCount(final int number) {
+      return 2;
+    }
+  };
+  private final DigitCountCalculator zeroDigitCountCalculator = new DigitCountCalculator() {
+    @Override public int calculateDigitCount(final int number) {
+      return 0;
+    }
+  };
+  private final SplitIntegerGenerator oddDigitSplitIntegerGenerator = new SplitIntegerGeneratorImpl(oddDigitCountCalculator);
+  private final SplitIntegerGenerator evenDigitSplitIntegerGenerator = new SplitIntegerGeneratorImpl(evenDigitCountCalculator);
+  private final SplitIntegerGenerator zeroDigitSplitIntegerGenerator = new SplitIntegerGeneratorImpl(zeroDigitCountCalculator);
 
   @Test
   public void testExpected() {
     try {
-      splitIntegerGenerator.generateSplitInteger(-1);
+      oddDigitSplitIntegerGenerator.generateSplitInteger(-1);
       Assert.fail();
     } catch (IllegalArgumentException e) {
       // expected
     }
 
     try {
-      splitIntegerGenerator.generateSplitInteger(0);
+      oddDigitSplitIntegerGenerator.generateSplitInteger(0);
       Assert.fail();
     } catch (IllegalArgumentException e) {
       // expected
     }
 
-    final SplitInteger singleInteger = splitIntegerGenerator.generateSplitInteger(1);
+    final SplitInteger singleInteger = oddDigitSplitIntegerGenerator.generateSplitInteger(1);
     Assert.assertEquals(singleInteger.getRightDigits(), new ArrayList<>(Arrays.asList(1)));
     Assert.assertTrue(singleInteger.getLeftDigits().isEmpty());
 
-    final SplitInteger oddDigitCountSplitInteger = splitIntegerGenerator.generateSplitInteger(123456789);
-    Assert.assertEquals(oddDigitCountSplitInteger.getLeftDigits(), new ArrayList(Arrays.asList(1, 2, 3, 4)));
-    Assert.assertEquals(oddDigitCountSplitInteger.getRightDigits(), new ArrayList(Arrays.asList(5, 6, 7, 8, 9)));
+    final SplitInteger oddDigitCountSplitInteger = oddDigitSplitIntegerGenerator.generateSplitInteger(123456789);
+    Assert.assertEquals(oddDigitCountSplitInteger.getLeftDigits(), new ArrayList());
+    Assert.assertEquals(oddDigitCountSplitInteger.getRightDigits(), new ArrayList(Arrays.asList(1)));
 
-    final SplitInteger evenDigitCountSplitInteger = splitIntegerGenerator.generateSplitInteger(12345678);
-    Assert.assertEquals(evenDigitCountSplitInteger.getLeftDigits(), new ArrayList(Arrays.asList(1, 2, 3, 4)));
-    Assert.assertEquals(evenDigitCountSplitInteger.getRightDigits(), new ArrayList(Arrays.asList(5, 6, 7, 8)));
+    final SplitInteger evenDigitCountSplitInteger = evenDigitSplitIntegerGenerator.generateSplitInteger(12345678);
+    Assert.assertEquals(evenDigitCountSplitInteger.getLeftDigits(), new ArrayList(Arrays.asList(1)));
+    Assert.assertEquals(evenDigitCountSplitInteger.getRightDigits(), new ArrayList(Arrays.asList(2)));
   }
 
 }
