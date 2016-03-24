@@ -42,24 +42,6 @@ public class NumberUtilTest {
   }
 
   @Test
-  public void testSquare() {
-    Assert.assertEquals(NumberUtil.square(-2), 4);
-    Assert.assertEquals(NumberUtil.square(-1), 1);
-    Assert.assertEquals(NumberUtil.square(0), 0);
-    Assert.assertEquals(NumberUtil.square(1), 1);
-    Assert.assertEquals(NumberUtil.square(2), 4);
-  }
-
-  @Test
-  public void testIsEven() {
-    Assert.assertTrue(NumberUtil.isEven(-2));
-    Assert.assertFalse(NumberUtil.isEven(-1));
-    Assert.assertTrue(NumberUtil.isEven(0));
-    Assert.assertFalse(NumberUtil.isEven(1));
-    Assert.assertTrue(NumberUtil.isEven(2));
-  }
-
-  @Test
   public void testPositiveIntegerDigits() {
     try {
       NumberUtil.positiveIntegerDigits(-1);

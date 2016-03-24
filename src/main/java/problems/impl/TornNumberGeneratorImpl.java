@@ -3,11 +3,9 @@ package problems.impl;
 import java.util.ArrayList;
 import java.util.List;
 
-import problems.exceptions.TornNumberCandidateOddDigitCountException;
 import problems.interfaces.SplitIntegerGenerator;
 import problems.interfaces.TornNumberGenerator;
 import problems.interfaces.TornNumberValidator;
-import problems.utils.NumberUtil;
 import problems.utils.SplitInteger;
 
 /**
@@ -40,7 +38,7 @@ public class TornNumberGeneratorImpl implements TornNumberGenerator {
 
     final List<Integer> tornNumbers = new ArrayList<>();
     int squareRoot = 1;
-    int tornNumberCandidate = NumberUtil.square(squareRoot);
+    int tornNumberCandidate = Math.multiplyExact(squareRoot, squareRoot);
     while (tornNumberCandidate <= upperLimitInclusive) {
       final SplitInteger splitInteger = splitIntegerGenerator.generateSplitInteger(tornNumberCandidate);
       if (tornNumberValidator.isTornNumber(splitInteger)) {
@@ -48,7 +46,7 @@ public class TornNumberGeneratorImpl implements TornNumberGenerator {
       }
 
       squareRoot++;
-      tornNumberCandidate = NumberUtil.square(squareRoot);
+      tornNumberCandidate = Math.multiplyExact(squareRoot, squareRoot);
     }
     return tornNumbers;
   }
