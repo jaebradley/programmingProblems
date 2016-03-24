@@ -7,13 +7,6 @@ import java.util.Set;
 import java.util.Stack;
 
 public class NumberUtil {
-  public static int positiveIntegerDigitCount(final int positiveInt) {
-    if (positiveInt < 1) {
-      throw new IllegalArgumentException("positiveInt is less than 1");
-    }
-    return Double.valueOf(Math.log10(positiveInt)).intValue() + 1;
-  }
-
   public static List<Integer> positiveIntegerDigits(final int positiveInt) {
     if (positiveInt < 1) {
       throw new IllegalArgumentException("positiveInt is less than 1");
