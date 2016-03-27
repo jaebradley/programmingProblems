@@ -34,12 +34,12 @@ public class DivisorsCalculatorImplTest {
 
   @Test
   public void itShouldCalculateDivisors() {
-    Set<Integer> oneDivisors = new HashSet<>(Arrays.asList(1));
-    Set<Integer> twoDivisors = new HashSet<>(Arrays.asList(1, 2));
-    Set<Integer> fourDivisors = new HashSet<>(Arrays.asList(1, 2, 4));
-    Assert.assertEquals(divisorsCalculator.calculateDivisors(1), oneDivisors);
-    Assert.assertEquals(divisorsCalculator.calculateDivisors(2), twoDivisors);
-    Assert.assertEquals(divisorsCalculator.calculateDivisors(4), fourDivisors);
+    Set<Long> oneDivisors = new HashSet<>(Arrays.asList(1L));
+    Set<Long> twoDivisors = new HashSet<>(Arrays.asList(1L, 2L));
+    Set<Long> fourDivisors = new HashSet<>(Arrays.asList(1L, 2L, 4L));
+    Assert.assertEquals(divisorsCalculator.calculateDivisors(1L), oneDivisors);
+    Assert.assertEquals(divisorsCalculator.calculateDivisors(2L), twoDivisors);
+    Assert.assertEquals(divisorsCalculator.calculateDivisors(4L), fourDivisors);
   }
 
   @Test
