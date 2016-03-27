@@ -1,9 +1,7 @@
 package problems.utils;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 import java.util.Stack;
 
 public class NumberUtil {
@@ -47,18 +45,4 @@ public class NumberUtil {
     return digits;
   }
 
-  public static Set<Integer> getDivisorsForPositiveInteger(final int positiveInteger) {
-    if (positiveInteger < 1) {
-      throw new RuntimeException("positive integer must be greater than 0");
-    }
-
-    final Set<Integer> divisors = new HashSet<>();
-    for (int candidateDivisor = 1; candidateDivisor <= Math.ceil(Math.sqrt(positiveInteger)); candidateDivisor++) {
-      if (positiveInteger % candidateDivisor == 0) {
-        divisors.add(candidateDivisor);
-        divisors.add(new Double(positiveInteger / candidateDivisor).intValue());
-      }
-    }
-    return divisors;
-  }
 }
