@@ -44,11 +44,7 @@ public class DivisorsCalculatorImpl implements DivisorsCalculator {
     if (numbers.isEmpty()) {
       throw new IllegalArgumentException("must be at least one number");
     }
-    final Set<Long> commonDivisors = calculateCommonDivisors(numbers);
-    if (commonDivisors.isEmpty()) {
-      return 1;
-    }
-    return Collections.max(commonDivisors);
+    return Collections.max(calculateCommonDivisors(numbers));
   }
 
   @Override
