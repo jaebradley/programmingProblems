@@ -37,11 +37,11 @@ public class FractionAdderImpl implements FractionAdder {
   @Override public Fraction sumFractions(final Fraction firstFraction, final Fraction secondFraction) {
     final int combinedNumerator = firstFraction.getNumerator() * secondFraction.getDenominator() + firstFraction.getDenominator() * secondFraction.getNumerator();
     final int combinedDenominator = firstFraction.getDenominator() * secondFraction.getDenominator();
-    final Set<Integer> numeratorDivisors = divisorsCalculator.calculateDivisors(Math.abs(combinedNumerator));
-    final Set<Integer> denominatorDivisors = divisorsCalculator.calculateDivisors(Math.abs(combinedDenominator));
-    final Set<Integer> commonDivisors = new HashSet<>(numeratorDivisors);
+    final Set<Long> numeratorDivisors = divisorsCalculator.calculateDivisors(Math.abs(combinedNumerator));
+    final Set<Long> denominatorDivisors = divisorsCalculator.calculateDivisors(Math.abs(combinedDenominator));
+    final Set<Long> commonDivisors = new HashSet<>(numeratorDivisors);
     commonDivisors.retainAll(denominatorDivisors);
-    final int greatestCommonDivisor = Collections.max(commonDivisors);
+    final long greatestCommonDivisor = Collections.max(commonDivisors);
     return new Fraction(
         new Double(combinedNumerator / greatestCommonDivisor).intValue(),
         new Double(combinedDenominator / greatestCommonDivisor).intValue()
