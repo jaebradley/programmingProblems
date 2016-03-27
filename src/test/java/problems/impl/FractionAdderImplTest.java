@@ -3,10 +3,12 @@ package problems.impl;
 import org.junit.Assert;
 import org.junit.Test;
 
+import problems.interfaces.DivisorsCalculator;
 import problems.utils.Fraction;
 
 public class FractionAdderImplTest {
-  final FractionAdderImpl fractionAdder = new FractionAdderImpl();
+  private final DivisorsCalculator divisorsCalculator = new DivisorsCalculatorImpl();
+  private final FractionAdderImpl fractionAdder = new FractionAdderImpl(divisorsCalculator);
 
   @Test
   public void testExpected() {

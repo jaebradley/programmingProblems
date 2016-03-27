@@ -4,15 +4,22 @@ import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
 
+import problems.interfaces.DivisorsCalculator;
 import problems.interfaces.FractionAdder;
 import problems.utils.Fraction;
-import problems.utils.NumberUtil;
 
 /**
  * Implementation for adding fractions
  */
 
 public class FractionAdderImpl implements FractionAdder {
+
+  private final DivisorsCalculator divisorsCalculator;
+
+  public FractionAdderImpl(final DivisorsCalculator divisorsCalculator) {
+    this.divisorsCalculator = divisorsCalculator;
+  }
+
   /**
    * Multiplies the numerator from the first fraction and the denominator of the second fraction, and multiplies the
    * numerator from the second fraction and the denominator from the first fraction, and sums these two values
@@ -30,8 +37,8 @@ public class FractionAdderImpl implements FractionAdder {
   @Override public Fraction sumFractions(final Fraction firstFraction, final Fraction secondFraction) {
     final int combinedNumerator = firstFraction.getNumerator() * secondFraction.getDenominator() + firstFraction.getDenominator() * secondFraction.getNumerator();
     final int combinedDenominator = firstFraction.getDenominator() * secondFraction.getDenominator();
-    final Set<Integer> numeratorDivisors = NumberUtil.getDivisorsForPositiveInteger(Math.abs(combinedNumerator));
-    final Set<Integer> denominatorDivisors = NumberUtil.getDivisorsForPositiveInteger(Math.abs(combinedDenominator));
+    final Set<Integer> numeratorDivisors = divisorsCalculator.calculateDivisors(Math.abs(combinedNumerator));
+    final Set<Integer> denominatorDivisors = divisorsCalculator.calculateDivisors(Math.abs(combinedDenominator));
     final Set<Integer> commonDivisors = new HashSet<>(numeratorDivisors);
     commonDivisors.retainAll(denominatorDivisors);
     final int greatestCommonDivisor = Collections.max(commonDivisors);
