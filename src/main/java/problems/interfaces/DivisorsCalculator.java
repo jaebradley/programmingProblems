@@ -11,5 +11,5 @@ public interface DivisorsCalculator {
 
   Map<Long, Integer> calculateDivisorCount(final List<Long> numbers);
 
-  Set<Long> calculateCommonDivisors(final Map<Long, Integer> divisorsCount, final long numbersCount);
+  Set<Long> calculateCommonDivisors(final List<Long> numbers);
 }

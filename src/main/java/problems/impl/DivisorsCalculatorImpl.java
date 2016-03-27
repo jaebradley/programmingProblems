@@ -41,8 +41,7 @@ public class DivisorsCalculatorImpl implements DivisorsCalculator {
 
   @Override
   public long calculateGreatestCommonDivisor(final List<Long> numbers) {
-    final Map<Long, Integer> divisorCount = calculateDivisorCount(numbers);
-    final Set<Long> commonDivisors = calculateCommonDivisors(divisorCount, numbers.size());
+    final Set<Long> commonDivisors = calculateCommonDivisors(numbers);
     if (commonDivisors.isEmpty()) {
       return 1;
     }
@@ -50,13 +49,13 @@ public class DivisorsCalculatorImpl implements DivisorsCalculator {
   }
 
   @Override
-  public Set<Long> calculateCommonDivisors(final Map<Long, Integer> divisorsCount, final long numbersCount) {
-    if (numbersCount < 1) {
-      throw new IllegalArgumentException("numbers count must be positive");
+  public Set<Long> calculateCommonDivisors(final List<Long> numbers) {
+    if (numbers.isEmpty()) {
+      throw new IllegalArgumentException("numbers can't be empty");
     }
     final Set<Long> commonDivisors = new HashSet<>();
-    for (Entry<Long, Integer> entry : divisorsCount.entrySet()) {
-      if (entry.getValue() == numbersCount) {
+    for (Entry<Long, Integer> entry : calculateDivisorCount(numbers).entrySet()) {
+      if (entry.getValue() == numbers.size()) {
         commonDivisors.add(entry.getKey());
       }
     }
@@ -71,7 +70,7 @@ public class DivisorsCalculatorImpl implements DivisorsCalculator {
       for (final long divisor : divisors) {
         final Integer count = divisorCount.get(divisor);
         if (null == count) {
-          divisorCount.put(divisor, 0);
+          divisorCount.put(divisor, 1);
         } else {
           divisorCount.put(divisor, count + 1);
         }
