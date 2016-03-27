@@ -1,8 +1,8 @@
 package problems.impl;
 
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 import problems.interfaces.DivisorsCalculator;
 import problems.interfaces.FractionAdder;
@@ -35,16 +35,13 @@ public class FractionAdderImpl implements FractionAdder {
    * @return fraction object in fully reduced form
    */
   @Override public Fraction sumFractions(final Fraction firstFraction, final Fraction secondFraction) {
-    final int combinedNumerator = firstFraction.getNumerator() * secondFraction.getDenominator() + firstFraction.getDenominator() * secondFraction.getNumerator();
-    final int combinedDenominator = firstFraction.getDenominator() * secondFraction.getDenominator();
-    final Set<Long> numeratorDivisors = divisorsCalculator.calculateDivisors(Math.abs(combinedNumerator));
-    final Set<Long> denominatorDivisors = divisorsCalculator.calculateDivisors(Math.abs(combinedDenominator));
-    final Set<Long> commonDivisors = new HashSet<>(numeratorDivisors);
-    commonDivisors.retainAll(denominatorDivisors);
-    final long greatestCommonDivisor = Collections.max(commonDivisors);
+    final long combinedNumerator = firstFraction.getNumerator() * secondFraction.getDenominator() + firstFraction.getDenominator() * secondFraction.getNumerator();
+    final long combinedDenominator = firstFraction.getDenominator() * secondFraction.getDenominator();
+    final List<Long> fractionValues = new ArrayList<>(Arrays.asList(combinedDenominator, combinedNumerator));
+    final long greatestCommonDivisor = divisorsCalculator.calculateGreatestCommonDivisor(fractionValues);
     return new Fraction(
-        new Double(combinedNumerator / greatestCommonDivisor).intValue(),
-        new Double(combinedDenominator / greatestCommonDivisor).intValue()
+        new Double(combinedNumerator / greatestCommonDivisor).longValue(),
+        new Double(combinedDenominator / greatestCommonDivisor).longValue()
     );
 
   }
