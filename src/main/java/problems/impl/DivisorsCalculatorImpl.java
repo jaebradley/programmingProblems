@@ -41,6 +41,9 @@ public class DivisorsCalculatorImpl implements DivisorsCalculator {
 
   @Override
   public long calculateGreatestCommonDivisor(final List<Long> numbers) {
+    if (numbers.isEmpty()) {
+      throw new IllegalArgumentException("must be at least one number");
+    }
     final Set<Long> commonDivisors = calculateCommonDivisors(numbers);
     if (commonDivisors.isEmpty()) {
       return 1;
@@ -50,9 +53,6 @@ public class DivisorsCalculatorImpl implements DivisorsCalculator {
 
   @Override
   public Set<Long> calculateCommonDivisors(final List<Long> numbers) {
-    if (numbers.isEmpty()) {
-      throw new IllegalArgumentException("numbers can't be empty");
-    }
     final Set<Long> commonDivisors = new HashSet<>();
     for (Entry<Long, Integer> entry : calculateDivisorCount(numbers).entrySet()) {
       if (entry.getValue() == numbers.size()) {

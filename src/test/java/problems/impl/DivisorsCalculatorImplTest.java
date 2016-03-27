@@ -1,8 +1,6 @@
 package problems.impl;
 
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
 
 import org.junit.Assert;
 import org.junit.Test;
@@ -38,6 +36,17 @@ public class DivisorsCalculatorImplTest {
     Assert.assertEquals(divisorsCalculator.calculateDivisors(1), oneDivisors);
     Assert.assertEquals(divisorsCalculator.calculateDivisors(2), twoDivisors);
     Assert.assertEquals(divisorsCalculator.calculateDivisors(4), fourDivisors);
+  }
+
+  @Test
+  public void itShouldCalculateDivisorCount() {
+    Assert.assertEquals(divisorsCalculator.calculateDivisorCount(new ArrayList<>()), new HashMap<Long, Integer>());
+
+    final List<Long> testNumbers1 = new ArrayList<>(Arrays.asList(1L, 2L));
+    final Map<Long, Integer> testNumbers1DivisorsMap = new HashMap<>();
+    testNumbers1DivisorsMap.put(1L, 2);
+    testNumbers1DivisorsMap.put(2L, 1);
+    Assert.assertEquals(divisorsCalculator.calculateDivisorCount(testNumbers1), testNumbers1DivisorsMap);
   }
 
 }
