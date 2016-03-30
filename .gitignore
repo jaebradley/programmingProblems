@@ -2,4 +2,5 @@ programmingProblems.iml
 .idea/*
 out/
 target/
+
 .coveralls.yml
