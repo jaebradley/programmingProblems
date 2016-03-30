@@ -1,14 +1,9 @@
 #!/bin/bash
 
-echo "Running Maven clean package for errors"
-# running maven clean test
-mvn clean package
-if [ $? -ne 0 ]; then
-  "Error while running mvn clean package"
-  # go back to current working dir
-  cd $CWD
-  exit 1
+read -p "You're about to push, are you sure you won't break the build? " -n 1 -r < /dev/tty
+echo
+if [[ $REPLY =~ ^[Yy]$ ]]
+then
+    exit 0 # push will execute
 fi
-# go back to current working dir
-cd $CWD
-exit 0
+exit 1 # push will not execute
