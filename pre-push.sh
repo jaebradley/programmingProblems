@@ -4,6 +4,6 @@ read -p "You're about to push, are you sure you won't break the build? " -n 1 -r
 echo
 if [[ $REPLY =~ ^[Yy]$ ]]
 then
-    exit 0 # push will execute
+    exit 0
 fi
-exit 1 # push will not execute
+exit 1
