@@ -13,6 +13,6 @@ public class AnagramValidatorImpl implements AnagramValidator {
 
   @Override
   public boolean areAnagrams(final String value1, final String value2) {
-    return characterCountGenerator.generateCharacterCount(value1) == characterCountGenerator.generateCharacterCount(value2);
+    return characterCountGenerator.generateAlphabeticCharacterCount(value1) == characterCountGenerator.generateAlphabeticCharacterCount(value2);
   }
 }
