@@ -6,15 +6,22 @@ import java.util.Map;
 import problems.interfaces.CharacterCountGenerator;
 
 public class CharacterCountGeneratorImpl implements CharacterCountGenerator {
-  @Override public Map<Character, Integer> generateCharacterCount(final String value) {
-    final Map<Character, Integer> characterCounts = new HashMap<>();
+  @Override
+  public Map<Character, Integer> generateCharacterCount(final String value) {
+    final Map<Character, Integer> characterCount = new HashMap<>();
     for (final char c : value.toCharArray()) {
-      Integer characterCount = characterCounts.get(c);
-      if (null == characterCount) {
-        characterCount = 0;
-      }
-      characterCounts.put(c, ++characterCount);
+      incrementCharacterCount(characterCount, c);
     }
-    return characterCounts;
+    return characterCount;
+  }
+
+  @Override
+  public Map<Character, Integer> incrementCharacterCount(final Map<Character, Integer> characterCount, final char character) {
+    Integer count = characterCount.get(character);
+    if (null == count) {
+      count = 0;
+    }
+    characterCount.put(character, ++count);
+    return characterCount;
   }
 }
