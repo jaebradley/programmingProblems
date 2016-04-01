@@ -7,10 +7,12 @@ import org.junit.Assert;
 import org.junit.Test;
 
 import problems.interfaces.DigitCountCalculator;
+import problems.interfaces.DigitsIdentifier;
 import problems.interfaces.SplitIntegerGenerator;
 import problems.utils.SplitInteger;
 
 public class SplitIntegerGeneratorImplTest {
+  private final DigitsIdentifier digitsIdentifierImpl = new DigitsIdentifierImpl();
   private final DigitCountCalculator oddDigitCountCalculator = new DigitCountCalculator() {
     @Override public int calculateDigitCount(final int number) {
       return 1;
@@ -26,9 +28,9 @@ public class SplitIntegerGeneratorImplTest {
       return 0;
     }
   };
-  private final SplitIntegerGenerator oddDigitSplitIntegerGenerator = new SplitIntegerGeneratorImpl(oddDigitCountCalculator);
-  private final SplitIntegerGenerator evenDigitSplitIntegerGenerator = new SplitIntegerGeneratorImpl(evenDigitCountCalculator);
-  private final SplitIntegerGenerator zeroDigitSplitIntegerGenerator = new SplitIntegerGeneratorImpl(zeroDigitCountCalculator);
+  private final SplitIntegerGenerator oddDigitSplitIntegerGenerator = new SplitIntegerGeneratorImpl(oddDigitCountCalculator, digitsIdentifierImpl);
+  private final SplitIntegerGenerator evenDigitSplitIntegerGenerator = new SplitIntegerGeneratorImpl(evenDigitCountCalculator, digitsIdentifierImpl);
+  private final SplitIntegerGenerator zeroDigitSplitIntegerGenerator = new SplitIntegerGeneratorImpl(zeroDigitCountCalculator, digitsIdentifierImpl);
 
   @Test
   public void testExpected() {

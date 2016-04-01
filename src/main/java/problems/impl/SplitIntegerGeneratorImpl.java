@@ -3,16 +3,18 @@ package problems.impl;
 import java.util.List;
 
 import problems.interfaces.DigitCountCalculator;
+import problems.interfaces.DigitsIdentifier;
 import problems.interfaces.SplitIntegerGenerator;
-import problems.utils.NumberUtil;
 import problems.utils.SplitInteger;
 
 public class SplitIntegerGeneratorImpl implements SplitIntegerGenerator {
 
   private final DigitCountCalculator digitCountCalculator;
+  private final DigitsIdentifier digitsIdentifier;
 
-  public SplitIntegerGeneratorImpl(final DigitCountCalculator digitCountCalculator) {
+  public SplitIntegerGeneratorImpl(final DigitCountCalculator digitCountCalculator, final DigitsIdentifier digitsIdentifier) {
     this.digitCountCalculator = digitCountCalculator;
+    this.digitsIdentifier = digitsIdentifier;
   }
 
   @Override
@@ -22,7 +24,7 @@ public class SplitIntegerGeneratorImpl implements SplitIntegerGenerator {
     }
 
     final int digitCount = digitCountCalculator.calculateDigitCount(candidate);
-    final List<Integer> digits = NumberUtil.positiveIntegerDigits(candidate);
+    final List<Integer> digits = digitsIdentifier.identifyDigits(candidate);
     final List<Integer> leftDigits = digits.subList(0, Math.floorDiv(digitCount, 2));
     final List<Integer> rightDigits = digits.subList(Math.floorDiv(digitCount, 2), digitCount);
     return new SplitInteger(leftDigits, rightDigits);

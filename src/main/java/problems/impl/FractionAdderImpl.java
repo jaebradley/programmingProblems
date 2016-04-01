@@ -1,8 +1,8 @@
 package problems.impl;
 
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 import problems.interfaces.DivisorsCalculator;
 import problems.interfaces.FractionAdder;
@@ -34,17 +34,18 @@ public class FractionAdderImpl implements FractionAdder {
    * @param secondFraction one of the fractions to be summed
    * @return fraction object in fully reduced form
    */
-  @Override public Fraction sumFractions(final Fraction firstFraction, final Fraction secondFraction) {
-    final int combinedNumerator = firstFraction.getNumerator() * secondFraction.getDenominator() + firstFraction.getDenominator() * secondFraction.getNumerator();
-    final int combinedDenominator = firstFraction.getDenominator() * secondFraction.getDenominator();
-    final Set<Integer> numeratorDivisors = divisorsCalculator.calculateDivisors(Math.abs(combinedNumerator));
-    final Set<Integer> denominatorDivisors = divisorsCalculator.calculateDivisors(Math.abs(combinedDenominator));
-    final Set<Integer> commonDivisors = new HashSet<>(numeratorDivisors);
-    commonDivisors.retainAll(denominatorDivisors);
-    final int greatestCommonDivisor = Collections.max(commonDivisors);
+  @Override
+  public Fraction sumFractions(final Fraction firstFraction, final Fraction secondFraction) {
+    final long combinedNumerator = firstFraction.getNumerator() * secondFraction.getDenominator() + firstFraction.getDenominator() * secondFraction.getNumerator();
+    final long combinedDenominator = firstFraction.getDenominator() * secondFraction.getDenominator();
+    final List<Long> fractionValues = new ArrayList<>(Arrays.asList(Math.abs(combinedDenominator), Math.abs(combinedNumerator)));
+    final long greatestCommonDivisor = divisorsCalculator.calculateGreatestCommonDivisor(fractionValues);
+    if (greatestCommonDivisor < 1) {
+      throw new RuntimeException("unexpected value");
+    }
     return new Fraction(
-        new Double(combinedNumerator / greatestCommonDivisor).intValue(),
-        new Double(combinedDenominator / greatestCommonDivisor).intValue()
+        new Double(combinedNumerator / greatestCommonDivisor).longValue(),
+        new Double(combinedDenominator / greatestCommonDivisor).longValue()
     );
 
   }

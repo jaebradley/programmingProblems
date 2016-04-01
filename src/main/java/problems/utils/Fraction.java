@@ -1,10 +1,10 @@
 package problems.utils;
 
 public class Fraction {
-  private final int numerator;
-  private final int denominator;
+  private final long numerator;
+  private final long denominator;
 
-  public Fraction(final int numerator, final int denominator) {
+  public Fraction(final long numerator, final long denominator) {
     if (0 == denominator) {
       throw new RuntimeException("denominator value cannot be 0");
     }
@@ -13,11 +13,11 @@ public class Fraction {
     this.denominator = denominator;
   }
 
-  public int getNumerator() {
+  public long getNumerator() {
     return numerator;
   }
 
-  public int getDenominator() {
+  public long getDenominator() {
     return denominator;
   }
 }
