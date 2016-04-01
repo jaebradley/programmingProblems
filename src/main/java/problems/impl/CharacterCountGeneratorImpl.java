@@ -15,6 +15,14 @@ public class CharacterCountGeneratorImpl implements CharacterCountGenerator {
     return characterCount;
   }
 
+  @Override public Map<Character, Integer> generateAlphabeticCharacterCount(final String value) {
+    final Map<Character, Integer> characterCount = new HashMap<>();
+    for (final char c : value.toCharArray()) {
+      incrementAlphabeticCharacterCount(characterCount, c);
+    }
+    return characterCount;
+  }
+
   @Override
   public Map<Character, Integer> incrementCharacterCount(final Map<Character, Integer> characterCount, final char character) {
     Integer count = characterCount.get(character);
@@ -22,6 +30,14 @@ public class CharacterCountGeneratorImpl implements CharacterCountGenerator {
       count = 0;
     }
     characterCount.put(character, ++count);
+    return characterCount;
+  }
+
+  @Override
+  public Map<Character, Integer> incrementAlphabeticCharacterCount(final Map<Character, Integer> characterCount, final char character) {
+    if (Character.isAlphabetic(character)) {
+      return incrementCharacterCount(characterCount, character);
+    }
     return characterCount;
   }
 }
