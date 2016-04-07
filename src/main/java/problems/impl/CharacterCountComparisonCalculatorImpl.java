@@ -61,7 +61,7 @@ public class CharacterCountComparisonCalculatorImpl implements CharacterCountCom
     if (Collections.min(characterCount.values()) < 0) {
       throw new IllegalArgumentException("all counts must be non-negative");
     }
-    
+
    return distinctValuesCalculator.calculateDistinctNonNullValues(characterCount.values()) == 2 && (Collections.max(characterCount.values()) - Collections.min(characterCount.values())) == 1;
   }
 
