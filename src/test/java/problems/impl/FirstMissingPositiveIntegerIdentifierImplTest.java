@@ -2,7 +2,6 @@ package problems.impl;
 
 import org.junit.Assert;
 import org.junit.Test;
-import problems.exceptions.NoFirstMissingPositiveIntegerException;
 import problems.interfaces.FirstMissingPositiveIntegerIdentifier;
 
 import java.util.Arrays;
