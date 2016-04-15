@@ -13,6 +13,12 @@ public class PascalsTriangleRowValuesCalculatorImpl implements PascalsTriangleRo
     this.binomialCoefficientCalculator = binomialCoefficientCalculator;
   }
 
+  /**
+   * Calculate the row values for Pascal's Triangle for a given row index value
+   * @param rowIndex a non-negative value that represents the row index to calculate values from
+   * @return a List of row values
+   */
+
   @Override
   public List<Integer> calculateRowValues(final int rowIndex) {
     if (rowIndex < 0) {
