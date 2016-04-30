@@ -23,6 +23,22 @@ public class LevenshteinDistanceCalculatorImpl implements LevenshteinDistanceCal
   @Override
   public int calculateIndexValue(final int[][] levenshteinMatrixValues, final int firstValueIndex, final int secondValueIndex,
                                  final char firstValueChar, final char secondValueChar) {
+    if (firstValueIndex < 0) {
+      throw new IllegalArgumentException("index value cannot be negative");
+    }
+
+    if (secondValueIndex < 0) {
+      throw new IllegalArgumentException("index value cannot be negative");
+    }
+
+    if (firstValueIndex > levenshteinMatrixValues.length) {
+      throw new IllegalArgumentException("index value cannot be greater than length");
+    }
+
+    if (secondValueIndex > levenshteinMatrixValues[firstValueIndex].length) {
+      throw new IllegalArgumentException("index value cannot be greater than row length");
+    }
+    
     if (firstValueChar == secondValueChar) {
       return levenshteinMatrixValues[firstValueIndex][secondValueIndex];
     }
