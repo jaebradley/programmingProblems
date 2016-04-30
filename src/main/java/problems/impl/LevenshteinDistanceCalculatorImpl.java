@@ -9,15 +9,15 @@ public class LevenshteinDistanceCalculatorImpl implements LevenshteinDistanceCal
     for (int i = 0; i < firstValue.length(); i++) {
       levenshteinDistanceValues[i][0] = i;
     }
-    for (int j = 0; j <secondValue.length(); j++) {
+    for (int j = 0; j < secondValue.length(); j++) {
       levenshteinDistanceValues[0][j] = j;
     }
     for (int i = 1; i < firstValue.length(); i++) {
-      for (int j = 1; j < firstValue.length(); j++) {
+      for (int j = 1; j < secondValue.length(); j++) {
         levenshteinDistanceValues[i][j] = calculateIndexValue(levenshteinDistanceValues, i, j, firstValue.charAt(i), secondValue.charAt(j));
       }
     }
-    return levenshteinDistanceValues[firstValue.length()][secondValue.length()];
+    return levenshteinDistanceValues[firstValue.length() - 1][secondValue.length() - 1];
   }
 
   @Override
