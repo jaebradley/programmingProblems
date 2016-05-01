@@ -13,10 +13,27 @@ public class LevenshteinDistanceCalculatorImplTest {
     Assert.assertEquals(levenshteinDistanceCalculator.calculateLevenshteinDistance("jae", "jae"), 0);
     Assert.assertEquals(levenshteinDistanceCalculator.calculateLevenshteinDistance("jae", "ja"), 1);
     Assert.assertEquals(levenshteinDistanceCalculator.calculateLevenshteinDistance("jae", "jar"), 1);
+    Assert.assertEquals(levenshteinDistanceCalculator.calculateLevenshteinDistance("", ""), 0);
+    Assert.assertEquals(levenshteinDistanceCalculator.calculateLevenshteinDistance("jae", ""), 3);
+    Assert.assertEquals(levenshteinDistanceCalculator.calculateLevenshteinDistance("", "jae"), 3);
   }
 
   @Test
   public void itShouldThrowException() {
+    try {
+      levenshteinDistanceCalculator.calculateLevenshteinDistance(null, "jae");
+      Assert.fail();
+    } catch (IllegalArgumentException e) {
+      // expected
+    }
+
+    try {
+      levenshteinDistanceCalculator.calculateLevenshteinDistance("jae", null);
+      Assert.fail();
+    } catch (IllegalArgumentException e) {
+      // expected
+    }
+
     levenshteinDistanceMatrix[0] = new int[] {
             1, 2, 3
     };

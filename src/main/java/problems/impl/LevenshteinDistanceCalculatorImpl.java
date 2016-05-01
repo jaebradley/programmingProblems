@@ -5,6 +5,26 @@ import problems.interfaces.LevenshteinDistanceCalculator;
 public class LevenshteinDistanceCalculatorImpl implements LevenshteinDistanceCalculator {
   @Override
   public int calculateLevenshteinDistance(final String firstValue, final String secondValue) {
+    if (null == firstValue) {
+      throw new IllegalArgumentException("string value should not be null");
+    }
+
+    if (null == secondValue) {
+      throw new IllegalArgumentException("string value should not be null");
+    }
+
+    if (firstValue.isEmpty() && secondValue.isEmpty()) {
+      return 0;
+    }
+
+    if (firstValue.isEmpty() && !secondValue.isEmpty()) {
+      return secondValue.length();
+    }
+
+    if (!firstValue.isEmpty() && secondValue.isEmpty()) {
+      return firstValue.length();
+    }
+
     final int[][] levenshteinDistanceValues = new int[firstValue.length()][secondValue.length()];
     for (int i = 0; i < firstValue.length(); i++) {
       levenshteinDistanceValues[i][0] = i;
