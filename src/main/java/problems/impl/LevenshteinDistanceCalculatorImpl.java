@@ -13,16 +13,8 @@ public class LevenshteinDistanceCalculatorImpl implements LevenshteinDistanceCal
       throw new IllegalArgumentException("string value should not be null");
     }
 
-    if (firstValue.isEmpty() && secondValue.isEmpty()) {
-      return 0;
-    }
-
-    if (firstValue.isEmpty() && !secondValue.isEmpty()) {
-      return secondValue.length();
-    }
-
-    if (!firstValue.isEmpty() && secondValue.isEmpty()) {
-      return firstValue.length();
+    if (firstValue.isEmpty() || secondValue.isEmpty()) {
+      return calculateLevenshteinDistanceForEmptyStrings(firstValue, secondValue);
     }
 
     final int[][] levenshteinDistanceValues = new int[firstValue.length()][secondValue.length()];
@@ -38,6 +30,23 @@ public class LevenshteinDistanceCalculatorImpl implements LevenshteinDistanceCal
       }
     }
     return levenshteinDistanceValues[firstValue.length() - 1][secondValue.length() - 1];
+  }
+
+  @Override
+  public int calculateLevenshteinDistanceForEmptyStrings(final String firstValue, final String secondValue) {
+    if (firstValue.isEmpty() && secondValue.isEmpty()) {
+      return 0;
+    }
+
+    if (firstValue.isEmpty() && !secondValue.isEmpty()) {
+      return secondValue.length();
+    }
+
+    if (!firstValue.isEmpty() && secondValue.isEmpty()) {
+      return firstValue.length();
+    }
+
+    throw new IllegalArgumentException("neither value is empty");
   }
 
   @Override
