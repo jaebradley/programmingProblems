@@ -38,7 +38,7 @@ public class LevenshteinDistanceCalculatorImpl implements LevenshteinDistanceCal
     if (secondValueIndex > levenshteinMatrixValues[firstValueIndex].length) {
       throw new IllegalArgumentException("index value cannot be greater than row length");
     }
-    
+
     if (firstValueChar == secondValueChar) {
       return levenshteinMatrixValues[firstValueIndex][secondValueIndex];
     }
