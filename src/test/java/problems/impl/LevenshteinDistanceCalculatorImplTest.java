@@ -13,6 +13,9 @@ public class LevenshteinDistanceCalculatorImplTest {
     Assert.assertEquals(levenshteinDistanceCalculator.calculateLevenshteinDistance("jae", "jae"), 0);
     Assert.assertEquals(levenshteinDistanceCalculator.calculateLevenshteinDistance("jae", "ja"), 1);
     Assert.assertEquals(levenshteinDistanceCalculator.calculateLevenshteinDistance("jae", "jar"), 1);
+    Assert.assertEquals(levenshteinDistanceCalculator.calculateLevenshteinDistance("", ""), 0);
+    Assert.assertEquals(levenshteinDistanceCalculator.calculateLevenshteinDistance("jae", ""), 3);
+    Assert.assertEquals(levenshteinDistanceCalculator.calculateLevenshteinDistance("", "jae"), 3);
   }
 
   @Test
