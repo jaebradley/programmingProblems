@@ -1,7 +1,9 @@
 package problems.interfaces;
 
-public interface ShannonEntropyCalculator {
-  double calculateShannonEntropy(final String value);
+import java.math.BigDecimal;
 
-  double calculateEventInformation(final long frequency, final long sequenceLength);
+public interface ShannonEntropyCalculator {
+  BigDecimal calculateShannonEntropy(final String value);
+
+  BigDecimal calculateEventInformation(final long frequency, final long sequenceLength);
 }
