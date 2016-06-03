@@ -2,6 +2,12 @@ package problems.impl;
 
 import problems.interfaces.MinimalStandardGenerator;
 
+/**
+ *
+ * http://www.eternallyconfuzzled.com/tuts/algorithms/jsw_tut_rand.aspx
+ * http://home.earthlink.net/~pfenerty/pi/schrages_method.html
+ */
+
 public class MinimalStandardGeneratorImpl implements MinimalStandardGenerator {
   private static final int MODULUS = 2147483647;
   private static final int MULTIPLIER = 48271;
