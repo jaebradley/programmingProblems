@@ -17,6 +17,7 @@ public class CharacterCountMapperImplTest {
   private final String almostValidStringByRemoval1 = "aaabbbbccc";
   private final String almostValidStringByRemoval2 = "aaaabbbbc";
   private final String invalidAlmostValidStringByRemoval = "aaBBcd";
+  private final String emptyString = "";
 
 
   @Test
