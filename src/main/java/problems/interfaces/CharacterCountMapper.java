@@ -8,4 +8,6 @@ public interface CharacterCountMapper {
   boolean isValidString(final String value);
 
   boolean isAlmostValidStringByRemoval(final String value);
+
+  boolean isAtLeastAlmostValidStringByRemoval(final String value);
 }
