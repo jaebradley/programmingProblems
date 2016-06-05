@@ -65,12 +65,14 @@ public class CharacterCountMapperImpl implements CharacterCountMapper {
       throw new IllegalArgumentException("input string cannot be null");
     }
     final Map<Character, Long> characterCountMap = mapCharacterCount(value);
+
+    if (characterCountMap.values().size() == 0) {
+      return false;
+    }
+
     final Set<Long> distinctCounts = new HashSet<>(characterCountMap.values());
     final long minValue = Collections.min(distinctCounts);
 
-    if (distinctCounts.size() == 0) {
-      return false;
-    }
 
     long minValueCount = 0;
     for (final long characterCount : characterCountMap.values()) {
