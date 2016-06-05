@@ -39,13 +39,23 @@ public class CharacterCountMapperImpl implements CharacterCountMapper {
     }
     final Map<Character, Long> characterCountMap = mapCharacterCount(value);
     final Set<Long> distinctCounts = new HashSet<>(characterCountMap.values());
+    final long minValue = Collections.min(distinctCounts);
 
     if (distinctCounts.size() == 0) {
       return false;
     }
 
+    long minValueCount = 0;
+    for (final long characterCount : characterCountMap.values()) {
+      if (characterCount == minValue) {
+        minValueCount++;
+      }
+    }
+
     final long absoluteCountsDifference = Math.abs(Collections.max(distinctCounts)) - Math.abs(Collections.min(distinctCounts));
-    return distinctCounts.size() == 2 && absoluteCountsDifference == 1;
+    final boolean isOneMaxValueWithOneUnitDifference = absoluteCountsDifference == 1 && minValueCount == characterCountMap.values().size() - 1;
+    final boolean isOneMinValue = minValue == 1 && minValueCount == 1;
+    return distinctCounts.size() == 2 && (isOneMaxValueWithOneUnitDifference || isOneMinValue);
   }
 
   @Override

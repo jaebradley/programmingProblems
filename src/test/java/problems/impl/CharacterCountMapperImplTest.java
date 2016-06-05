@@ -13,7 +13,11 @@ public class CharacterCountMapperImplTest {
   private final CharacterCountMapper characterCountMapper = new CharacterCountMapperImpl();
   private final String multiCharacterInvalidString = "a11BBBdddd";
   private final String validString = "aaBBcc";
-  private final String almostValidStringByRemoval = "aaaBBccc";
+  private final String invalidAlmostValidStringByRemoval1 = "aaaBBccc";
+  private final String almostValidStringByRemoval1 = "aaabbbbccc";
+  private final String almostValidStringByRemoval2 = "aaaabbbbc";
+  private final String invalidAlmostValidStringByRemoval = "aaBBcd";
+
 
   @Test
   public void testCharacterCountMapping() {
@@ -44,9 +48,12 @@ public class CharacterCountMapperImplTest {
 
   @Test
   public void testIsAlmostValidStringByRemoval() {
-    Assert.assertTrue(characterCountMapper.isAlmostValidStringByRemoval(almostValidStringByRemoval));
+    Assert.assertTrue(characterCountMapper.isAlmostValidStringByRemoval(almostValidStringByRemoval1));
+    Assert.assertTrue(characterCountMapper.isAlmostValidStringByRemoval(almostValidStringByRemoval2));
     Assert.assertFalse(characterCountMapper.isAlmostValidStringByRemoval(validString));
     Assert.assertFalse(characterCountMapper.isAlmostValidStringByRemoval(multiCharacterInvalidString));
+    Assert.assertFalse(characterCountMapper.isAlmostValidStringByRemoval(invalidAlmostValidStringByRemoval));
+    Assert.assertFalse(characterCountMapper.isAlmostValidStringByRemoval(invalidAlmostValidStringByRemoval1));
   }
 
   @Test(expected = IllegalArgumentException.class)
@@ -56,8 +63,11 @@ public class CharacterCountMapperImplTest {
 
   @Test
   public void testIsAtLeastAlmostValidStringByRemoval() {
-    Assert.assertTrue(characterCountMapper.isAtLeastAlmostValidStringByRemoval(almostValidStringByRemoval));
+    Assert.assertTrue(characterCountMapper.isAlmostValidStringByRemoval(almostValidStringByRemoval1));
+    Assert.assertTrue(characterCountMapper.isAlmostValidStringByRemoval(almostValidStringByRemoval2));
     Assert.assertTrue(characterCountMapper.isAtLeastAlmostValidStringByRemoval(validString));
     Assert.assertFalse(characterCountMapper.isAtLeastAlmostValidStringByRemoval(multiCharacterInvalidString));
+    Assert.assertFalse(characterCountMapper.isAlmostValidStringByRemoval(invalidAlmostValidStringByRemoval));
+    Assert.assertFalse(characterCountMapper.isAlmostValidStringByRemoval(invalidAlmostValidStringByRemoval1));
   }
 }
