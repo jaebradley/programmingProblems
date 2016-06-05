@@ -39,6 +39,7 @@ public class CharacterCountMapperImplTest {
   @Test
   public void testIsValidString() {
     Assert.assertTrue(characterCountMapper.isValidString(validString));
+    Assert.assertTrue(characterCountMapper.isValidString(emptyString));
     Assert.assertFalse(characterCountMapper.isValidString(multiCharacterInvalidString));
   }
 
@@ -51,6 +52,7 @@ public class CharacterCountMapperImplTest {
   public void testIsAlmostValidStringByRemoval() {
     Assert.assertTrue(characterCountMapper.isAlmostValidStringByRemoval(almostValidStringByRemoval1));
     Assert.assertTrue(characterCountMapper.isAlmostValidStringByRemoval(almostValidStringByRemoval2));
+    Assert.assertFalse(characterCountMapper.isAlmostValidStringByRemoval(emptyString));
     Assert.assertFalse(characterCountMapper.isAlmostValidStringByRemoval(validString));
     Assert.assertFalse(characterCountMapper.isAlmostValidStringByRemoval(multiCharacterInvalidString));
     Assert.assertFalse(characterCountMapper.isAlmostValidStringByRemoval(invalidAlmostValidStringByRemoval));
@@ -67,6 +69,7 @@ public class CharacterCountMapperImplTest {
     Assert.assertTrue(characterCountMapper.isAlmostValidStringByRemoval(almostValidStringByRemoval1));
     Assert.assertTrue(characterCountMapper.isAlmostValidStringByRemoval(almostValidStringByRemoval2));
     Assert.assertTrue(characterCountMapper.isAtLeastAlmostValidStringByRemoval(validString));
+    Assert.assertTrue(characterCountMapper.isAtLeastAlmostValidStringByRemoval(emptyString));
     Assert.assertFalse(characterCountMapper.isAtLeastAlmostValidStringByRemoval(multiCharacterInvalidString));
     Assert.assertFalse(characterCountMapper.isAlmostValidStringByRemoval(invalidAlmostValidStringByRemoval));
     Assert.assertFalse(characterCountMapper.isAlmostValidStringByRemoval(invalidAlmostValidStringByRemoval1));
