@@ -12,7 +12,8 @@ public class ScrabbleTileCounterImpl implements ScrabbleTileCounter {
 
   @Override
   public Map<ScrabbleTile, Integer> calculateTileCount(final Collection<ScrabbleTile> tiles) throws NoRemainingTilesException {
-    final Map<ScrabbleTile, Integer> tileCount = ScrabbleTile.STARTING_SCRABBLE_TILE_COUNT;
+    final Map<ScrabbleTile, Integer> tileCount = new HashMap<>();
+    tileCount.putAll(ScrabbleTile.STARTING_SCRABBLE_TILE_COUNT);
     for (ScrabbleTile tile : tiles) {
       if (tileCount.get(tile) < 1) {
         throw new NoRemainingTilesException();
