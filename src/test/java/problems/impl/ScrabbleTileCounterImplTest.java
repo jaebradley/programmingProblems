@@ -41,9 +41,9 @@ public class ScrabbleTileCounterImplTest {
     tileCount.put(ScrabbleTile.A, 1);
     tileCount.put(ScrabbleTile.B, 2);
     tileCount.put(ScrabbleTile.C, 2);
-    final Map<Integer, List<ScrabbleTile>> expectedOutputTileCount = new HashMap<>();
-    expectedOutputTileCount.put(1, new ArrayList<>(Arrays.asList(ScrabbleTile.A)));
-    expectedOutputTileCount.put(2, new ArrayList<>(Arrays.asList(ScrabbleTile.B, ScrabbleTile.C)));
+    final Map<Integer, Set<ScrabbleTile>> expectedOutputTileCount = new HashMap<>();
+    expectedOutputTileCount.put(1, new HashSet<>(Arrays.asList(ScrabbleTile.A)));
+    expectedOutputTileCount.put(2, new HashSet<>(Arrays.asList(ScrabbleTile.B, ScrabbleTile.C)));
     Assert.assertEquals(scrabbleTileCounter.calculateOutputTileCount(tileCount), expectedOutputTileCount);
   }
 

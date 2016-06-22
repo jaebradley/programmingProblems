@@ -24,12 +24,12 @@ public class ScrabbleTileCounterImpl implements ScrabbleTileCounter {
   }
 
   @Override
-  public Map<Integer, List<ScrabbleTile>> calculateOutputTileCount(final Map<ScrabbleTile, Integer> tileCount) {
-    final Map<Integer, List<ScrabbleTile>> outputTileCount = new HashMap<>();
+  public Map<Integer, Set<ScrabbleTile>> calculateOutputTileCount(final Map<ScrabbleTile, Integer> tileCount) {
+    final Map<Integer, Set<ScrabbleTile>> outputTileCount = new HashMap<>();
     for (Map.Entry<ScrabbleTile, Integer> entry : tileCount.entrySet()) {
-      final List<ScrabbleTile> scrabbleTiles = outputTileCount.get(entry.getValue());
+      final Set<ScrabbleTile> scrabbleTiles = outputTileCount.get(entry.getValue());
       if (scrabbleTiles == null) {
-        outputTileCount.put(entry.getValue(), new ArrayList<>(Arrays.asList(entry.getKey())));
+        outputTileCount.put(entry.getValue(), new HashSet<>(Arrays.asList(entry.getKey())));
       } else {
         scrabbleTiles.add(entry.getKey());
         outputTileCount.put(entry.getValue(), scrabbleTiles);
