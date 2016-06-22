@@ -4,6 +4,10 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * Tile Distributions are defined here http://scrabblewizard.com/scrabble-tile-distribution/
+ */
+
 public enum ScrabbleTile {
   A('A', 9),
   B('B', 2),

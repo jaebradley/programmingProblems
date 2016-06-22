@@ -6,7 +6,20 @@ import problems.models.ScrabbleTile;
 
 import java.util.*;
 
+/**
+ * Outputs remaining Scrabble tiles
+ * Inspired by https://www.reddit.com/r/dailyprogrammer/comments/4oylbo/20160620_challenge_272_easy_whats_in_the_bag/
+ */
+
 public class ScrabbleTileCounterImpl implements ScrabbleTileCounter {
+
+  /**
+   * Given a Collection of tiles that have already been used, returns the remaining tile counts or a NoRemainingTilesException
+   * if there are no more tiles of a given type.
+   * @param tiles a Collection of tiles that have already been used
+   * @return a Map of tiles to tile counts remaining
+   * @throws NoRemainingTilesException
+   */
 
   @Override
   public Map<ScrabbleTile, Integer> calculateTileCount(final Collection<ScrabbleTile> tiles) throws NoRemainingTilesException {
