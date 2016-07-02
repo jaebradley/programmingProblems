@@ -2,17 +2,12 @@ package problems.impl;
 
 import problems.interfaces.AdjacentDuplicateCharactersRemover;
 
-import java.util.ArrayList;
 import java.util.Stack;
 
 public class AdjacentDuplicateCharactersRemoverImpl implements AdjacentDuplicateCharactersRemover {
   @Override
   public String removeAdjacentDuplicateCharacters(final String candidate) {
-    if (candidate.isEmpty()) {
-      return candidate;
-    }
-
-    if (candidate.length() == 1) {
+    if (candidate.length() < 2) {
       return candidate;
     }
 
@@ -22,18 +17,22 @@ public class AdjacentDuplicateCharactersRemoverImpl implements AdjacentDuplicate
     }
     final Stack<Character> filteredCharacters = filterAdjacentDuplicateCharacters(originalCharacters);
     final StringBuilder stringBuilder = new StringBuilder();
-    for (char c : new ArrayList<>(filteredCharacters)) {
-      stringBuilder.append(c);
+    while (!filteredCharacters.empty()) {
+      stringBuilder.append(filteredCharacters.pop());
     }
     return stringBuilder.toString();
   }
 
   @Override
   public Stack<Character> filterAdjacentDuplicateCharacters(final Stack<Character> characters) {
+    if (characters.size() < 2) {
+      return characters;
+    }
+
     final Stack<Character> filteredCharacters = new Stack<>();
     while (!characters.empty()) {
       final char poppedChar = characters.pop();
-      if (poppedChar != filteredCharacters.peek()) {
+      if (filteredCharacters.empty() || poppedChar != filteredCharacters.peek()) {
         filteredCharacters.push(poppedChar);
       } else {
         filteredCharacters.pop();
