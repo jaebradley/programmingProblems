@@ -9,8 +9,6 @@ package problems.impl;
  */
 
 public class BeautifulBinaryStringTransformationCounter {
-  private BeautifulBinaryStringTransformationCounter() {}
-
   /**
    * Given a binary String, return the count of changes to the String necessary to make the String beautiful.
    * @param s String representing a binary value (contains only characters that are 0s and 1s)
