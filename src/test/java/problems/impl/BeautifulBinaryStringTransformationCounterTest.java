@@ -8,6 +8,8 @@ public class BeautifulBinaryStringTransformationCounterTest {
 
   @Test
   public void testCounter() {
+    assertNotNull(new BeautifulBinaryStringTransformationCounter());
+
     final String smallBinary = "01";
     assertEquals(BeautifulBinaryStringTransformationCounter.count(smallBinary), 0);
 
