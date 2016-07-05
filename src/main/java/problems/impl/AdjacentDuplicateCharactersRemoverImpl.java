@@ -15,48 +15,21 @@ public class AdjacentDuplicateCharactersRemoverImpl implements AdjacentDuplicate
 
   /**
    * Given an input String, remove any Characters that are adjacent and the same.
-   * @param candidate String to remove any adjacent duplicates from
+   * @param s String to remove any adjacent duplicates from
    * @return String where no adjacent characters are identical
    */
   @Override
-  public String removeAdjacentDuplicateCharacters(final String candidate) {
-    if (candidate.length() < 2) {
-      return candidate;
-    }
-
-    final Stack<Character> originalCharacters = new Stack<>();
-    for (char c : candidate.toCharArray()) {
-      originalCharacters.push(c);
-    }
-    final Stack<Character> filteredCharacters = filterAdjacentDuplicateCharacters(originalCharacters);
-    final StringBuilder stringBuilder = new StringBuilder();
-    while (!filteredCharacters.empty()) {
-      stringBuilder.append(filteredCharacters.pop());
-    }
-    return stringBuilder.toString();
-  }
-
-  /**
-   * Given an input Stack of Characters, remove any Characters that are adjacent and the same.
-   * @param characters Stack of Characters to remove adjacent duplicates from
-   * @return Stack of Characters where no adjacent Characters are the same
-   */
-  @Override
-  public Stack<Character> filterAdjacentDuplicateCharacters(final Stack<Character> characters) {
-    if (characters.size() < 2) {
-      return characters;
-    }
-
-    final Stack<Character> filteredCharacters = new Stack<>();
-    while (!characters.empty()) {
-      final char poppedChar = characters.pop();
-      if (filteredCharacters.empty() || poppedChar != filteredCharacters.peek()) {
-        filteredCharacters.push(poppedChar);
+  public String removeAdjacentDuplicateCharacters(final String s) {
+    final char[] chars = s.toCharArray();
+    int len = 0;
+    for (int i = 0; i < chars.length; i++) {
+      if (len == 0 || chars[i] != chars[len - 1]) {
+        chars[len++] = chars[i];
       } else {
-        filteredCharacters.pop();
+        len--;
       }
     }
-
-    return filteredCharacters;
+    return new String(chars, 0, len);
   }
+
 }
