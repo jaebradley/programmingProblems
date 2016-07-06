@@ -21,9 +21,8 @@ public class InsertionSorterImpl implements InsertionSorter {
       int j = i - 1;
       int numberToInsert = sorted[i];
       while (j >= 0 && numberToInsert < sorted[j]) {
-        int numberToReplace = sorted[j];
+        sorted[j + 1] = sorted[j];
         sorted[j] = numberToInsert;
-        sorted[j + 1] = numberToReplace;
         j--;
       }
     }
