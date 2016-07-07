@@ -10,10 +10,17 @@ public class InsertionSorterImplTest {
 
   @Test
   public void testInsertionSort() {
-    Assert.assertArrayEquals(insertionSorter.sort(new int[] {5}), new int [] {5});
-    Assert.assertArrayEquals(insertionSorter.sort(new int[] {5, 4, 3, 2, 1}), new int [] {1, 2, 3, 4, 5});
-    Assert.assertArrayEquals(insertionSorter.sort(new int[] {-1, -1, -1}), new int [] {-1, -1, -1});
-    Assert.assertArrayEquals(insertionSorter.sort(new int[] {-1, 4, -2}), new int [] {-2, -1, 4});
+    final int[] singleElementArray = new int[] {5};
+    insertionSorter.sort(singleElementArray);
+    Assert.assertArrayEquals(singleElementArray, new int [] {5});
+
+    final int[] unsortedArray = new int[] {5, 3, 4, 2, 1};
+    insertionSorter.sort(unsortedArray);
+    Assert.assertArrayEquals(unsortedArray, new int [] {1, 2, 3, 4, 5});
+
+    final int[] sameElementArray = new int[] {-1, -1, -1};
+    insertionSorter.sort(sameElementArray);
+    Assert.assertArrayEquals(sameElementArray, new int [] {-1, -1, -1});
   }
 
 }
