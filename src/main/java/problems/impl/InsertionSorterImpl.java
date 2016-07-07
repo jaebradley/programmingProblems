@@ -12,7 +12,6 @@ public class InsertionSorterImpl implements InsertionSorter {
    * that is less than the given value at the specified index. Increment the index of all the values before that index
    * and slot the given value into that index.
    * @param numbers an array of integers
-   * @return a sorted array of integers
    */
   @Override
   public void sort(final int[] numbers) {
