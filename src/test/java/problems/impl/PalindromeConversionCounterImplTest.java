@@ -13,7 +13,7 @@ public class PalindromeConversionCounterImplTest {
     Assert.assertEquals(counter.count("A"), 0);
     Assert.assertEquals(counter.count("AB"), 1);
     Assert.assertEquals(counter.count("ABA"), 0);
-    Assert.assertEquals(counter.count("ACBD"), 4);
+    Assert.assertEquals(counter.count("aCBD"), 4);
   }
 
   @Test

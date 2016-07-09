@@ -20,9 +20,9 @@ public class PalindromeConversionCounterImpl implements PalindromeConversionCoun
   public int count(final String s) {
     int count = 0;
     final char[] chars = s.toCharArray();
-    for (int i = 0; i < Math.ceil(chars.length / 2); i++) {
-      final char currentChar = chars[i];
-      final char oppositeChar = chars[chars.length - 1 - i];
+    for (int i = 0, j = chars.length - 1; i < j; i++, j--) {
+      final char currentChar = Character.toLowerCase(chars[i]);
+      final char oppositeChar = Character.toLowerCase(chars[j]);
       if (!Character.isAlphabetic(currentChar) || !Character.isAlphabetic(oppositeChar)) {
         throw new IllegalArgumentException("String should contain only alphabetic characters");
       }
