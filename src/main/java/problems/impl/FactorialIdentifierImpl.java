@@ -2,6 +2,9 @@ package problems.impl;
 
 import problems.interfaces.FactorialIdentifier;
 
+/**
+ * Solution for problem described here: https://www.reddit.com/r/dailyprogrammer/comments/55nior/20161003_challenge_286_easy_reverse_factorial/?utm_content=title&utm_medium=hot&utm_source=reddit&utm_name=dailyprogrammer
+ */
 public class FactorialIdentifierImpl implements FactorialIdentifier {
 
   @Override
