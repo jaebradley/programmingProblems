@@ -1,5 +1,7 @@
 package problems.interfaces;
 
+import problems.data.Node;
+
 public interface LinkedList {
   Node getHead();
   int getElementsCount();
