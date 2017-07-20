@@ -8,8 +8,12 @@ public class Stack<T> {
   public Stack() {
   }
 
-  public Node<T> peek() {
-    return this.head;
+  public T peek() {
+    if (this.head == null) {
+      throw new RuntimeException("Unable to peek element for an empty stack");
+    }
+
+    return this.head.getData();
   }
 
   public void push(T data) {

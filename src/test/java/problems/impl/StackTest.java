@@ -16,8 +16,7 @@ public class StackTest {
     final Integer value = 1;
     final Stack<Integer> stack = new Stack<>();
     stack.push(value);
-    assertEquals(value, stack.peek().getData());
-    assertNull(stack.peek().getPrevious());
+    assertEquals(value, stack.peek());
   }
 
   @Test
@@ -36,8 +35,7 @@ public class StackTest {
     final Stack<Integer> stack = new Stack<>();
     stack.push(value);
 
-    assertEquals(value, stack.peek().getData());
-    assertNull(stack.peek().getPrevious());
+    assertEquals(value, stack.peek());
 
     stack.pop();
     assertNull(stack.peek());
