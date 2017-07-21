@@ -1,0 +1,47 @@
+package problems.impl;
+
+import org.junit.Test;
+
+import static org.junit.Assert.*;
+
+public class StackTest {
+
+  @Test
+  public void itShouldThrowWhenPeekingEmptyStack() {
+    final Stack<Integer> stack = new Stack<>();
+    try {
+      stack.peek();
+    } catch (Exception e) {
+      // expected
+    }
+  }
+
+  @Test
+  public void itShouldUpdateHeadAfterPushing() {
+    final Integer value = 1;
+    final Stack<Integer> stack = new Stack<>();
+    stack.push(value);
+    assertEquals(value, stack.peek());
+  }
+
+  @Test
+  public void itShouldThrowWhenPoppingEmptyStack() {
+    final Stack<Integer> stack = new Stack<>();
+    try {
+      stack.pop();
+    } catch (Exception e) {
+      // expected
+    }
+  }
+
+  @Test
+  public void itShouldRemoveHeadWhenPopping() {
+    final Integer value = 1;
+    final Stack<Integer> stack = new Stack<>();
+    stack.push(value);
+
+    assertEquals(value, stack.peek());
+
+    stack.pop();
+  }
+}
