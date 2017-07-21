@@ -5,10 +5,15 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 
 public class StackTest {
+
   @Test
-  public void itShouldReturnHeadWhenPeeking() {
+  public void itShouldThrowWhenPeekingEmptyStack() {
     final Stack<Integer> stack = new Stack<>();
-    assertNull(stack.peek());
+    try {
+      stack.peek();
+    } catch (Exception e) {
+      // expected
+    }
   }
 
   @Test

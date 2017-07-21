@@ -1,10 +1,10 @@
 ## Purpose
 
-Implement a [`Stack`](https://en.wikipedia.org/wiki/Stack_(abstract_data_type)) with `push`, `pop`, and `peek` operations.
+Implement a [`Stack`](https://en.wikipedia.org/wiki/Stack_(abstract_data_type)) with `push`, `pop`, and `peek` methods.
 
-The `push` method should add an element to the "top" of the `Stack`.
-The `pop` method should remove the "top" element from the `Stack`.
-The `peek` method should return the "top" element of the `Stack`.
+* The `push` method should add an element to the "top" of the `Stack`.
+* The `pop` method should remove the "top" element from the `Stack`.
+* The `peek` method should return the "top" element of the `Stack`.
 
 ## Approach
 
