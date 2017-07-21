@@ -43,6 +43,5 @@ public class StackTest {
     assertEquals(value, stack.peek());
 
     stack.pop();
-    assertNull(stack.peek());
   }
 }
