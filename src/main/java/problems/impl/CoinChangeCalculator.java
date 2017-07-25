@@ -19,42 +19,41 @@ public class CoinChangeCalculator {
     }
 
     public Map<Integer, Integer> calculateMinimumCoinChange(int value) {
-        if (value < this.coinChangeCounts.size()) {
-            return this.coinChangeCounts.get(value);
-        }
+        if (value > this.coinChangeCounts.size()) {
+            int previousSize = this.coinChangeCounts.size();
 
-        int previousSize = this.coinChangeCounts.size();
-        for (int index = previousSize; index <= value; index++) {
-            this.coinChangeCounts.add(index, new HashMap<>());
-        }
+            for (int index = previousSize; index <= value; index++) {
+                this.coinChangeCounts.add(index, new HashMap<>());
+            }
 
-        for (int subValue = previousSize; subValue <= value; subValue++) {
-            for (Integer coinValue : this.coinValues) {
-                int previousValue = subValue - coinValue;
-                if (previousValue >= 0) {
-                    Map<Integer, Integer> previousValueChangeChange = coinChangeCounts.get(previousValue);
-                    Map<Integer, Integer> subValueChangeCounts = coinChangeCounts.get(subValue);
+            for (int subValue = previousSize; subValue <= value; subValue++) {
+                for (Integer coinValue : this.coinValues) {
+                    int previousValue = subValue - coinValue;
+                    if (previousValue >= 0) {
+                        Map<Integer, Integer> previousValueChangeChange = coinChangeCounts.get(previousValue);
+                        Map<Integer, Integer> subValueChangeCounts = coinChangeCounts.get(subValue);
 
-                    int previousCoinCounts = previousValueChangeChange.values().stream()
-                            .filter((counts) -> counts != null)
-                            .mapToInt(Number::intValue)
-                            .sum();
-                    int subValueCoinCounts = subValueChangeCounts.values().stream()
-                            .filter((counts) -> counts != null)
-                            .mapToInt(Number::intValue)
-                            .sum();
+                        int previousCoinCounts = previousValueChangeChange.values().stream()
+                                .filter((counts) -> counts != null)
+                                .mapToInt(Number::intValue)
+                                .sum();
+                        int subValueCoinCounts = subValueChangeCounts.values().stream()
+                                .filter((counts) -> counts != null)
+                                .mapToInt(Number::intValue)
+                                .sum();
 
-                    if (subValueChangeCounts.isEmpty() || previousCoinCounts + 1 < subValueCoinCounts) {
-                        Map<Integer, Integer> updatedChangeCounts = new HashMap<>(previousValueChangeChange);
+                        if (subValueChangeCounts.isEmpty() || previousCoinCounts + 1 < subValueCoinCounts) {
+                            Map<Integer, Integer> updatedChangeCounts = new HashMap<>(previousValueChangeChange);
 
-                        Integer coinValueCount = updatedChangeCounts.get(coinValue);
-                        if (coinValueCount == null) {
-                            updatedChangeCounts.put(coinValue, 1);
-                        } else {
-                            updatedChangeCounts.put(coinValue, coinValueCount + 1);
+                            Integer coinValueCount = updatedChangeCounts.get(coinValue);
+                            if (coinValueCount == null) {
+                                updatedChangeCounts.put(coinValue, 1);
+                            } else {
+                                updatedChangeCounts.put(coinValue, coinValueCount + 1);
+                            }
+
+                            coinChangeCounts.set(subValue, updatedChangeCounts);
                         }
-
-                        coinChangeCounts.set(subValue, updatedChangeCounts);
                     }
                 }
             }
