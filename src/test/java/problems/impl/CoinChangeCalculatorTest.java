@@ -12,6 +12,28 @@ import static org.junit.Assert.*;
 public class CoinChangeCalculatorTest {
 
     @Test
+    public void itShouldThrowForNullCoinValue() {
+        Set<Integer> coinValues = new HashSet<>();
+        coinValues.add(null);
+        try {
+            new CoinChangeCalculator(coinValues);
+        } catch (IllegalArgumentException e) {
+            // expected
+        }
+    }
+
+    @Test
+    public void itShouldThrowForNegativeCoinValue() {
+        Set<Integer> coinValues = new HashSet<>();
+        coinValues.add(-1);
+        try {
+            new CoinChangeCalculator(coinValues);
+        } catch (IllegalArgumentException e) {
+            // expected
+        }
+    }
+
+    @Test
     public void itShouldReturnMinimumFor7() {
         Set<Integer> coinValues = new HashSet<>();
         coinValues.add(1);
@@ -21,6 +43,6 @@ public class CoinChangeCalculatorTest {
         expected.put(1, 2);
         expected.put(5, 1);
         CoinChangeCalculator calculator = new CoinChangeCalculator(coinValues);
-        assertEquals(expected, calculator.calculateMinimumCoinValuesNecessaryToMakeChange(7));
+        assertEquals(expected, calculator.calculateMinimumCoinChange(7));
     }
 }

@@ -4,6 +4,7 @@ import java.util.*;
 
 public class CoinChangeCalculator {
     private final Set<Integer> coinValues;
+    private final List<Map<Integer, Integer>> coinChangeCounts;
 
     public CoinChangeCalculator(Set<Integer> coinValues) {
         for (Integer coinValue : coinValues) {
@@ -13,29 +14,46 @@ public class CoinChangeCalculator {
         }
 
         this.coinValues = coinValues;
+        this.coinChangeCounts = new ArrayList<>();
+        this.coinChangeCounts.add(0, new HashMap<>());
     }
 
-    public Map<Integer, Integer> calculateMinimumCoinValuesNecessaryToMakeChange(int value) {
-        List<Map<Integer, Integer>> coinChangeCounts = CoinChangeCalculator.buildInitialCoinChangeCounts(value);
+    public Map<Integer, Integer> calculateMinimumCoinChange(int value) {
+        if (value < this.coinChangeCounts.size()) {
+            return this.coinChangeCounts.get(value);
+        }
 
-        for (int subValue = 1; subValue <= value; subValue++) {
+        int previousSize = this.coinChangeCounts.size();
+        for (int index = previousSize; index <= value; index++) {
+            this.coinChangeCounts.add(index, new HashMap<>());
+        }
+
+        for (int subValue = previousSize; subValue <= value; subValue++) {
             for (Integer coinValue : this.coinValues) {
-                int previousCoinSubValue = subValue - coinValue;
-                if (previousCoinSubValue >= 0) {
-                    Map<Integer, Integer> previousCoinChangeCounts = coinChangeCounts.get(previousCoinSubValue);
-                    int previousCoins = CoinChangeCalculator.sumEntries(previousCoinChangeCounts);
+                int previousValue = subValue - coinValue;
+                if (previousValue >= 0) {
+                    Map<Integer, Integer> previousValueChangeChange = coinChangeCounts.get(previousValue);
+                    Map<Integer, Integer> subValueChangeCounts = coinChangeCounts.get(subValue);
 
-                    Map<Integer, Integer> subValueCoinChangeCounts = coinChangeCounts.get(subValue);
-                    int subValueCoins = CoinChangeCalculator.sumEntries(subValueCoinChangeCounts);
+                    int previousCoinCounts = previousValueChangeChange.values().stream()
+                            .filter((counts) -> counts != null)
+                            .mapToInt(Number::intValue)
+                            .sum();
+                    int subValueCoinCounts = subValueChangeCounts.values().stream()
+                            .filter((counts) -> counts != null)
+                            .mapToInt(Number::intValue)
+                            .sum();
 
-                    if (subValueCoinChangeCounts.isEmpty() || previousCoins + 1 < subValueCoins) {
-                        Map<Integer, Integer> updatedChangeCounts = new HashMap<>(previousCoinChangeCounts);
+                    if (subValueChangeCounts.isEmpty() || previousCoinCounts + 1 < subValueCoinCounts) {
+                        Map<Integer, Integer> updatedChangeCounts = new HashMap<>(previousValueChangeChange);
+
                         Integer coinValueCount = updatedChangeCounts.get(coinValue);
                         if (coinValueCount == null) {
                             updatedChangeCounts.put(coinValue, 1);
                         } else {
                             updatedChangeCounts.put(coinValue, coinValueCount + 1);
                         }
+
                         coinChangeCounts.set(subValue, updatedChangeCounts);
                     }
                 }
@@ -43,23 +61,5 @@ public class CoinChangeCalculator {
         }
 
         return coinChangeCounts.get(value);
-    }
-
-    private static List<Map<Integer, Integer>> buildInitialCoinChangeCounts(int value) {
-        List<Map<Integer, Integer>> coinChangeCounts = new ArrayList<>();
-        for (int index = 0; index <= value; index++) {
-            coinChangeCounts.add(index, new HashMap<>());
-        }
-        return coinChangeCounts;
-    }
-
-    private static int sumEntries(Map<Integer, Integer> map) {
-        int sum = 0;
-        for (Integer value : map.values()) {
-            if (value != null) {
-                sum += value;
-            }
-        }
-        return sum;
     }
 }
