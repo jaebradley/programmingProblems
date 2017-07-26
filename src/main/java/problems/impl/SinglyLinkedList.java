@@ -1,31 +1,54 @@
 package problems.impl;
 
-public class SinglyLinkedList {
+import java.util.Objects;
 
-    public class Node {
-        Object data;
-        Node next;
+public class SinglyLinkedList<T> {
 
-        public Node(Object data, Node next) {
+    public static class Node<E> {
+        private final E data;
+        private Node<E> next;
+
+        public Node(E data, Node<E> next) {
             this.data = data;
             this.next = next;
         }
 
-        public Object getData() {
-            return data;
+        public E getData() {
+            return this.data;
         }
 
-        public Node getNext() {
-            return next;
+        public Node<E> getNext() {
+            return this.next;
         }
 
-        public void setNext(Node next) {
+        public void setNext(Node<E> next) {
             this.next = next;
+        }
+
+        @Override
+        public int hashCode() {
+            return Objects.hash(this.data, this.next);
+        }
+
+        @Override
+        public boolean equals(Object obj) {
+            if (obj == this) {
+                return true;
+            }
+
+            if (!(obj instanceof Node)) {
+                return false;
+            }
+
+            Node node = (Node) obj;
+
+            return Objects.equals(this.data, node.data) &&
+                    Objects.equals(this.next, node.next);
         }
     }
 
-    Node tail = null;
-    int size = 0;
+    private Node<T> head = null;
+    private int size = 0;
 
     public SinglyLinkedList() {
     }
@@ -38,63 +61,73 @@ public class SinglyLinkedList {
         return this.getSize() == 0;
     }
 
-    public Node getTail() {
-        return tail;
+    public Node<T> getHead() {
+        return this.head;
     }
 
-    public void add(Object data) {
-        Node newNext = new Node(data, null);
+    public void add(T data) {
+        this.addAtIndex(data, this.size);
+    }
 
-        if (this.isEmpty()) {
-            this.tail = newNext;
+    public void remove() {
+        this.removeAtIndex(this.size - 1);
+    }
+
+    public void addAtIndex(T data, int index) {
+        if (index > this.size || index < 0) {
+            throw new IllegalArgumentException("Invalid index value");
+        }
+
+        Node<T> currentNode = this.head;
+
+        if (index == 0) {
+            this.head = new Node<>(data, currentNode);
         } else {
-            Node currentNode = this.getTail();
-            while (currentNode.getNext() != null) {
+            for (int i = 0; i < index - 1; i++) {
                 currentNode = currentNode.getNext();
             }
-            currentNode.setNext(newNext);
+
+            Node<T> nextNode = new Node<>(data, currentNode.getNext());
+            currentNode.setNext(nextNode);
         }
 
         this.size++;
     }
 
-    public void remove() {
-        if (this.isEmpty()) {
-            throw new IllegalStateException("Unable to remove element from empty list");
-        }
-
-        Node previousNode = this.getTail();
-        Node currentNode = previousNode.getNext();
-
-        while (currentNode != null) {
-            previousNode = currentNode;
-            currentNode = currentNode.getNext();
-        }
-
-        previousNode.setNext(null);
-        this.size--;
-    }
-
-    public void addAtIndex(Object data, int index) {
-        if (index > this.getSize() || index < 0) {
+    public void removeAtIndex(int index) {
+        if (index < 0 || index >= this.size) {
             throw new IllegalArgumentException("Invalid index value");
         }
 
-        Node currentNode = this.getTail();
-        int currentIndex = 0;
-        while (currentNode != null && currentIndex < index) {
+        Node<T> currentNode = this.head;
+
+        if (index == 0) {
+            this.head = currentNode.getNext();
+        } else {
+            for (int i = 0; i < index - 1; i++) {
+                currentNode = currentNode.getNext();
+            }
+
+            currentNode.setNext(currentNode.getNext().getNext());
+        }
+
+        this.size--;
+    }
+
+    public T get(int index) {
+        if (index < 0 || index >= this.size) {
+            throw new IllegalArgumentException("Invalid index value");
+        }
+
+        Node<T> currentNode = this.head;
+
+        int count = 0;
+        while (count < index) {
             currentNode = currentNode.getNext();
+            count++;
         }
 
-        if (currentNode == null) {
-            Node nodeToInsert = new Node(data, null);
-        }
-
-        if (currentIndex == index) {
-            Node nodeToInsert = new Node(data, nextNode);
-            currentNode.setNext(nodeToInsert);
-            this.size++;
-        }
+        return currentNode.getData();
     }
 
 }
