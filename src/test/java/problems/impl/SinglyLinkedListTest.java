@@ -116,7 +116,7 @@ public class SinglyLinkedListTest {
 
         try {
             list.removeAtIndex(0);
-        } catch (IllegalArgumentException e) {
+        } catch (IndexOutOfBoundsException e) {
             // expected
         }
     }
@@ -156,7 +156,7 @@ public class SinglyLinkedListTest {
         assertFalse(list.isEmpty());
         assertEquals(2, list.getSize());
         assertEquals(first, list.get(0));
-        assertEquals(second, list.get(1));
+        assertEquals(third, list.get(1));
     }
 
     @Test
