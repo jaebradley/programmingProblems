@@ -11,8 +11,10 @@ extensive. However, in this basic implementation, I just wanted to implement the
 Things that I could improve
 
 * For the `addAtIndex` and `removeAtIndex` methods I special-case when the `index` is `0` - is there a more elegant solution?
-* Do the exceptions make sense? For the `remove` method should I check to see if the list is empty and then throw an
+* Do the exceptions make sense?
+  * For the `remove` method should I check to see if the list is empty and then throw an
   `IllegalStateException` before calling the `removeAtIndex` method? Same thing for the `get` method?
+  * Should I replace the `IllegalArgumentException`s with `IndexOutOfBoundException`s?
 
 ## Implementation
 

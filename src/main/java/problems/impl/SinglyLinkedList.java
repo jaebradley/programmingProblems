@@ -1,49 +1,22 @@
 package problems.impl;
 
-import java.util.Objects;
+/**
+ * Very basic singly linked list implementation
+ *
+ * https://codereview.stackexchange.com/questions/171268/basic-singly-linked-list-implementation
+ *
+ * @param <T>
+ */
 
 public class SinglyLinkedList<T> {
 
-    public static class Node<E> {
+    private static class Node<E> {
         private final E data;
         private Node<E> next;
 
         public Node(E data, Node<E> next) {
             this.data = data;
             this.next = next;
-        }
-
-        public E getData() {
-            return this.data;
-        }
-
-        public Node<E> getNext() {
-            return this.next;
-        }
-
-        public void setNext(Node<E> next) {
-            this.next = next;
-        }
-
-        @Override
-        public int hashCode() {
-            return Objects.hash(this.data, this.next);
-        }
-
-        @Override
-        public boolean equals(Object obj) {
-            if (obj == this) {
-                return true;
-            }
-
-            if (!(obj instanceof Node)) {
-                return false;
-            }
-
-            Node node = (Node) obj;
-
-            return Objects.equals(this.data, node.data) &&
-                    Objects.equals(this.next, node.next);
         }
     }
 
@@ -61,10 +34,6 @@ public class SinglyLinkedList<T> {
         return this.getSize() == 0;
     }
 
-    public Node<T> getHead() {
-        return this.head;
-    }
-
     public void add(T data) {
         this.addAtIndex(data, this.size);
     }
@@ -75,7 +44,7 @@ public class SinglyLinkedList<T> {
 
     public void addAtIndex(T data, int index) {
         if (index > this.size || index < 0) {
-            throw new IllegalArgumentException("Invalid index value");
+            throw new IndexOutOfBoundsException(String.format("Invalid index value: {}", index));
         }
 
         Node<T> currentNode = this.head;
@@ -84,11 +53,10 @@ public class SinglyLinkedList<T> {
             this.head = new Node<>(data, currentNode);
         } else {
             for (int i = 0; i < index - 1; i++) {
-                currentNode = currentNode.getNext();
+                currentNode = currentNode.next;
             }
 
-            Node<T> nextNode = new Node<>(data, currentNode.getNext());
-            currentNode.setNext(nextNode);
+            currentNode.next = new Node<>(data, currentNode.next);
         }
 
         this.size++;
@@ -96,19 +64,19 @@ public class SinglyLinkedList<T> {
 
     public void removeAtIndex(int index) {
         if (index < 0 || index >= this.size) {
-            throw new IllegalArgumentException("Invalid index value");
+            throw new IndexOutOfBoundsException(String.format("Invalid index value: {}", index));
         }
 
         Node<T> currentNode = this.head;
 
         if (index == 0) {
-            this.head = currentNode.getNext();
+            this.head = currentNode.next;
         } else {
             for (int i = 0; i < index - 1; i++) {
-                currentNode = currentNode.getNext();
+                currentNode = currentNode.next;
             }
 
-            currentNode.setNext(currentNode.getNext().getNext());
+            currentNode.next = (currentNode.next.next);
         }
 
         this.size--;
@@ -116,18 +84,18 @@ public class SinglyLinkedList<T> {
 
     public T get(int index) {
         if (index < 0 || index >= this.size) {
-            throw new IllegalArgumentException("Invalid index value");
+            throw new IndexOutOfBoundsException(String.format("Invalid index value: {}", index));
         }
 
         Node<T> currentNode = this.head;
 
         int count = 0;
         while (count < index) {
-            currentNode = currentNode.getNext();
+            currentNode = currentNode.next;
             count++;
         }
 
-        return currentNode.getData();
+        return currentNode.data;
     }
 
 }
