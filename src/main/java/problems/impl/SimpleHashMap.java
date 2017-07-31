@@ -1,10 +1,12 @@
 package problems.impl;
 
-public class HashMap<K, V> {
+public class SimpleHashMap<K, V> {
     private int size = 0;
     private int capacity = 16;
-    private Entry<K, V>[] entries = new Entry[capacity];
     private double loadFactor = 0.75;
+
+    @SuppressWarnings("unchecked")
+    private Entry<K, V>[] entries = new Entry[capacity];
 
     private static class Entry<K, V> {
         private final K key;
@@ -17,7 +19,7 @@ public class HashMap<K, V> {
         }
     }
 
-    public HashMap() {
+    public SimpleHashMap() {
     }
 
     public boolean isEmpty() {
@@ -93,6 +95,7 @@ public class HashMap<K, V> {
     private void resize() {
         this.capacity = this.size * 2;
 
+        @SuppressWarnings("unchecked")
         Entry<K, V>[] newEntries = new Entry[this.capacity];
         for (Entry<K, V> entry : this.entries) {
             if (entry != null) {

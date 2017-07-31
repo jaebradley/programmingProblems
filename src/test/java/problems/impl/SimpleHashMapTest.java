@@ -4,7 +4,7 @@ import org.junit.Test;
 
 import static org.junit.Assert.*;
 
-public class HashMapTest {
+public class SimpleHashMapTest {
     private String firstKey = "firstKey";
     private String firstValue = "firstValue";
     private String secondKey = "secondKey";
@@ -13,7 +13,7 @@ public class HashMapTest {
 
     @Test
     public void itShouldInstantiate() {
-        HashMap<String, String> map = new HashMap<>();
+        SimpleHashMap<String, String> map = new SimpleHashMap<>();
         assertNotNull(map);
         assertEquals(0, map.getSize());
         assertTrue(map.isEmpty());
@@ -21,7 +21,7 @@ public class HashMapTest {
 
     @Test
     public void itShouldPutAValue() {
-        HashMap<String, String> map = new HashMap<>();
+        SimpleHashMap<String, String> map = new SimpleHashMap<>();
         map.put(firstKey, firstValue);
         assertEquals(1, map.getSize());
         assertEquals(firstValue, map.get(firstKey));
@@ -29,7 +29,7 @@ public class HashMapTest {
 
     @Test
     public void itShouldPutIdenticalKeys() {
-        HashMap<String, String> map = new HashMap<>();
+        SimpleHashMap<String, String> map = new SimpleHashMap<>();
         map.put(firstKey, firstValue);
         map.put(firstKey, secondValue);
         assertEquals(1, map.getSize());
@@ -38,7 +38,7 @@ public class HashMapTest {
 
     @Test
     public void itShouldPutMultipleValues() {
-        HashMap<String, String> map = new HashMap<>();
+        SimpleHashMap<String, String> map = new SimpleHashMap<>();
         map.put(firstKey, firstValue);
         map.put(secondKey, secondValue);
         assertEquals(2, map.getSize());
@@ -48,7 +48,7 @@ public class HashMapTest {
 
     @Test
     public void itShouldTestResizing() {
-        HashMap<Integer, Integer> map = new HashMap<>();
+        SimpleHashMap<Integer, Integer> map = new SimpleHashMap<>();
         for (int i = 0; i < 100; i++) {
             map.put(i, i);
             assertEquals(i + 1, map.getSize());
@@ -61,7 +61,7 @@ public class HashMapTest {
 
     @Test
     public void itShouldTestNullKey() {
-        HashMap<String, String> map = new HashMap<>();
+        SimpleHashMap<String, String> map = new SimpleHashMap<>();
         map.put(null, firstValue);
         assertEquals(1, map.getSize());
         assertEquals(firstValue, map.get(null));
@@ -69,21 +69,21 @@ public class HashMapTest {
 
     @Test
     public void itShouldTestContainsNonNullKey() {
-        HashMap<String, String> map = new HashMap<>();
+        SimpleHashMap<String, String> map = new SimpleHashMap<>();
         map.put(firstKey, firstValue);
         assertTrue(map.containsKey(firstKey));
     }
 
     @Test
     public void itShouldTestContainsNullKey() {
-        HashMap<String, String> map = new HashMap<>();
+        SimpleHashMap<String, String> map = new SimpleHashMap<>();
         map.put(null, firstValue);
         assertTrue(map.containsKey(null));
     }
 
     @Test
     public void itShouldTestRemovingNonNullKey() {
-        HashMap<String, String> map = new HashMap<>();
+        SimpleHashMap<String, String> map = new SimpleHashMap<>();
         map.put(firstKey, firstValue);
         map.remove(firstKey);
         assertEquals(0, map.getSize());
@@ -91,7 +91,7 @@ public class HashMapTest {
 
     @Test
     public void itShouldTestRemovingNullKey() {
-        HashMap<String, String> map = new HashMap<>();
+        SimpleHashMap<String, String> map = new SimpleHashMap<>();
         map.put(null, firstValue);
         map.remove(null);
         assertEquals(0, map.getSize());
@@ -99,7 +99,7 @@ public class HashMapTest {
 
     @Test
     public void itShouldTestRemoving() {
-        HashMap<Integer, Integer> map = new HashMap<>();
+        SimpleHashMap<Integer, Integer> map = new SimpleHashMap<>();
         for (int i = 0; i < 100; i++) {
             map.put(i, i);
         }
@@ -113,7 +113,7 @@ public class HashMapTest {
 
     @Test
     public void itShouldTestContainsValue() {
-        HashMap<Integer, Integer> map = new HashMap<>();
+        SimpleHashMap<Integer, Integer> map = new SimpleHashMap<>();
         for (int i = 0; i < 100; i++) {
             map.put(i, i);
         }
@@ -129,7 +129,7 @@ public class HashMapTest {
 
     @Test
     public void itShouldTestContainsNullValue() {
-        HashMap<Integer, Integer> map = new HashMap<>();
+        SimpleHashMap<Integer, Integer> map = new SimpleHashMap<>();
         map.put(101, null);
         assertTrue(map.containsValue(null));
     }
