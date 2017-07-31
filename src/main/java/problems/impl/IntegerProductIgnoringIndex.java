@@ -14,19 +14,19 @@ public class IntegerProductIgnoringIndex {
             throw new IllegalArgumentException("Invalid values");
         }
 
-        int[] products = new int[values.length + 1];
+        int[] products = new int[values.length];
         products[0] = 1;
 
-        for (int i = 0; i < values.length; i++) {
+        for (int i = 0; i < values.length - 1; i++) {
             products[i + 1] = products[i] * values[i];
         }
 
-        int multiplier = products[0];
+        int multiplier = 1;
         for (int j = values.length - 1; j >= 0; j--) {
             products[j] *= multiplier;
             multiplier *= values[j];
         }
 
-        return Arrays.copyOfRange(products, 0, products.length - 1);
+        return products;
     }
 }
