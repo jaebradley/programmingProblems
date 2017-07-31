@@ -4,11 +4,11 @@ import org.junit.Test;
 
 import static org.junit.Assert.*;
 
-public class StackTest {
+public class SimpleStackTest {
 
   @Test
   public void itShouldThrowWhenPeekingEmptyStack() {
-    final Stack<Integer> stack = new Stack<>();
+    final SimpleStack<Integer> stack = new SimpleStack<>();
     try {
       stack.peek();
     } catch (Exception e) {
@@ -19,14 +19,14 @@ public class StackTest {
   @Test
   public void itShouldUpdateHeadAfterPushing() {
     final Integer value = 1;
-    final Stack<Integer> stack = new Stack<>();
+    final SimpleStack<Integer> stack = new SimpleStack<>();
     stack.push(value);
     assertEquals(value, stack.peek());
   }
 
   @Test
   public void itShouldThrowWhenPoppingEmptyStack() {
-    final Stack<Integer> stack = new Stack<>();
+    final SimpleStack<Integer> stack = new SimpleStack<>();
     try {
       stack.pop();
     } catch (Exception e) {
@@ -37,7 +37,7 @@ public class StackTest {
   @Test
   public void itShouldRemoveHeadWhenPopping() {
     final Integer value = 1;
-    final Stack<Integer> stack = new Stack<>();
+    final SimpleStack<Integer> stack = new SimpleStack<>();
     stack.push(value);
 
     assertEquals(value, stack.peek());

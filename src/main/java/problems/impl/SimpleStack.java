@@ -2,11 +2,8 @@ package problems.impl;
 
 import problems.models.Node;
 
-public class Stack<T> {
+public class SimpleStack<T> {
   Node<T> head = null;
-
-  public Stack() {
-  }
 
   public T peek() {
     if (this.head == null) {
