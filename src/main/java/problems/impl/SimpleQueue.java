@@ -43,6 +43,10 @@ public class SimpleQueue<T> {
         Node<T> currentNode = this.head;
         this.head = currentNode.previous;
 
+        if (this.head == null) {
+            this.tail = null;
+        }
+
         return currentNode.data;
     }
 
