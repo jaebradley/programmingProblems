@@ -14,7 +14,7 @@ public class BinarySearcher {
     }
 
     private static int searchSubArray(int[] values, int leftIndex, int rightIndex, int target) {
-        if (values.length == 0) {
+        if (values.length == 0 || leftIndex < 0 || rightIndex < 0) {
             throw new NoSuchElementException(String.format("Unable to find target: {} in values", target));
         }
 
@@ -31,7 +31,7 @@ public class BinarySearcher {
         int middleValue = values[middleIndex];
 
         if (target < middleValue) {
-            return searchSubArray(values, leftIndex + 1, middleIndex + 1, target);
+            return searchSubArray(values, leftIndex + 1, middleIndex - 1, target);
         }
 
         else if (target > middleValue) {
