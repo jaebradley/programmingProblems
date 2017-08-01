@@ -1,7 +1,13 @@
 package problems.impl;
 
+/**
+ * https://codereview.stackexchange.com/questions/171699/simple-queue-implementation/171710#171710
+ * @param <T>
+ */
+
 public class SimpleQueue<T> {
     private Node<T> head;
+    private Node<T> tail;
 
     private class Node<E> {
         private final E data;
@@ -14,22 +20,19 @@ public class SimpleQueue<T> {
     }
 
     public boolean isEmpty() {
-        return this.head == null;
+        return this.head == null && this.tail == null;
     }
 
     public void enqueue(T data) {
-        Node<T> currentNode = this.head;
         Node<T> nodeToInsert = new Node<>(data, null);
 
-        if (this.isEmpty()) {
+        if (isEmpty()) {
             this.head = nodeToInsert;
         } else {
-            while (currentNode.previous != null) {
-                currentNode = currentNode.previous;
-            }
-
-            currentNode.previous = nodeToInsert;
+            this.tail.previous = nodeToInsert;
         }
+
+        this.tail = nodeToInsert;
     }
 
     public T dequeue() {
