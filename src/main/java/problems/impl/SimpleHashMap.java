@@ -1,5 +1,13 @@
 package problems.impl;
 
+import java.util.Objects;
+
+/**
+ * https://codereview.stackexchange.com/questions/171650/hashmap-implementation/171662#171662
+ * @param <K> Key Object
+ * @param <V> Value Object
+ */
+
 public class SimpleHashMap<K, V> {
     private int size = 0;
     private int capacity = 16;
@@ -11,15 +19,12 @@ public class SimpleHashMap<K, V> {
     private static class Entry<K, V> {
         private final K key;
         private V value;
-        private Entry<K, V> next = null;
+        private Entry<K, V> next;
 
-        public Entry(K key, V value) {
+        Entry(K key, V value) {
             this.key = key;
             this.value = value;
         }
-    }
-
-    public SimpleHashMap() {
     }
 
     public boolean isEmpty() {
@@ -31,9 +36,7 @@ public class SimpleHashMap<K, V> {
     }
 
     public boolean containsKey(K key) {
-        Entry<K, V> matchingEntry = getMatchingEntry(key);
-
-        return matchingEntry != null && matchingEntry.key == key;
+        return getMatchingEntry(key) != null;
     }
 
     public boolean containsValue(V value) {
@@ -155,8 +158,7 @@ public class SimpleHashMap<K, V> {
     }
 
     private boolean matches(Object o1, Object o2) {
-        return (o1 == null && o2 == null) ||
-                (o1 != null && o2 != null && o1.equals(o2));
+        return Objects.equals(o1, o2);
     }
 
     /**
