@@ -2,14 +2,11 @@ package problems.impl;
 
 import problems.exceptions.TransactionRolledbackException;
 
-import java.util.EmptyStackException;
 import java.util.Stack;
 
 public class TransactionalStack<T> {
     private final Stack<T> stack = new Stack<>();
     private final Stack<TransactionEvent<T>> transactionEvents = new Stack<>();
-    private Stack<TransactionEvent<T>> rolledbackTransactionEvents = new Stack<>();
-
 
     private static class TransactionEvent<E> {
         private enum Type {
@@ -30,29 +27,19 @@ public class TransactionalStack<T> {
     public void push(T value) {
         stack.push(value);
 
-        if (!transactionEvents.isEmpty() && rolledbackTransactionEvents.empty()) {
+        if (!transactionEvents.isEmpty()) {
             transactionEvents.add(new TransactionEvent<>(TransactionEvent.Type.PUSH, value));
         }
     }
 
     public T pop() {
-        T value;
+        validateNonEmptyStack();
 
-        try {
-            value = stack.pop();
-        } catch (EmptyStackException e) {
-            if (transactionEvents.empty()) {
-                throw e;
-            }
+        T value = stack.pop();
 
-            rollback();
-
-            throw new TransactionRolledbackException("Cannot pop an empty stack. Rolled back changes.");
-        }
-
-        if (!transactionEvents.isEmpty() && rolledbackTransactionEvents.empty()) {
+        if (!transactionEvents.isEmpty()) {
             transactionEvents.add(new TransactionEvent<>(TransactionEvent.Type.POP, value));
-        }
+    }
 
         return value;
     }
@@ -62,17 +49,9 @@ public class TransactionalStack<T> {
     }
 
     public T peek() {
-        try {
-            return stack.peek();
-        } catch (EmptyStackException e) {
-            if (transactionEvents.empty()) {
-                throw e;
-            }
+        validateNonEmptyStack();
 
-            rollback();
-
-            throw new TransactionRolledbackException("Cannot peek an empty stack. Rolled back changes.");
-        }
+        return stack.peek();
     }
 
     public void begin() {
@@ -91,25 +70,35 @@ public class TransactionalStack<T> {
     public void rollback() {
         while (!transactionEvents.empty()) {
             TransactionEvent<T> transactionEvent = transactionEvents.pop();
-            rolledbackTransactionEvents.push(transactionEvent);
 
             switch (transactionEvent.type) {
                 case POP: {
-                    push(transactionEvent.value);
+                    stack.push(transactionEvent.value);
                     break;
                 }
 
                 case PUSH: {
-                    pop();
+                    validateNonEmptyStack();
+
+                    stack.pop();
                     break;
                 }
 
-                default: {
+                case BEGIN: {
                     return;
+                }
+
+                default: {
+                    throw new RuntimeException(String.format("Unknown event: {}", transactionEvent.type));
                 }
             }
         }
+    }
 
-        rolledbackTransactionEvents = new Stack<>();
+    private void validateNonEmptyStack() {
+        if (stack.empty()) {
+            rollback();
+            throw new TransactionRolledbackException("Cannot execute action on an empty stack. Rolled back changes.");
+        }
     }
 }
