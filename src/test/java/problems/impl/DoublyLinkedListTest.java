@@ -188,4 +188,46 @@ public class DoublyLinkedListTest {
         assertNull(list.getHead());
         assertEquals(list.getHead(), list.getTail());
     }
+
+    @Test
+    public void removeHeadForSingleElementList() {
+        DoublyLinkedList list = new DoublyLinkedList();
+        list.insertAtHead(1);
+        list.removeHead();
+        assertEquals(0, list.getLength());
+        assertNull(list.getHead());
+        assertEquals(list.getHead(), list.getTail());
+    }
+
+    @Test
+    public void removeHeadForTwoElementList() {
+        DoublyLinkedList list = new DoublyLinkedList();
+        list.insertAtHead(2);
+        list.insertAtHead(1);
+        list.removeHead();
+        assertEquals(1, list.getLength());
+        assertEquals(2, list.getHead().getValue());
+        assertEquals(list.getHead(), list.getTail());
+    }
+
+    @Test
+    public void removeTailForSingleElementList() {
+        DoublyLinkedList list = new DoublyLinkedList();
+        list.insertAtHead(1);
+        list.removeTail();
+        assertEquals(0, list.getLength());
+        assertNull(list.getHead());
+        assertEquals(list.getHead(), list.getTail());
+    }
+
+    @Test
+    public void removeTailForTwoElementList() {
+        DoublyLinkedList list = new DoublyLinkedList();
+        list.insertAtHead(2);
+        list.insertAtHead(1);
+        list.removeTail();
+        assertEquals(1, list.getLength());
+        assertEquals(1, list.getHead().getValue());
+        assertEquals(list.getHead(), list.getTail());
+    }
 }

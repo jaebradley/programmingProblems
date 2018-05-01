@@ -25,7 +25,7 @@ public class DoublyLinkedList {
 
     private Node head;
     private Node tail;
-    private int length = 0;
+    private int length;
 
     public DoublyLinkedList() {
     }
@@ -93,6 +93,14 @@ public class DoublyLinkedList {
         removeNode(currentNodeAtIndex);
     }
 
+    public void removeHead() {
+        removeNode(head);
+    }
+
+    public void removeTail() {
+        removeNode(tail);
+    }
+
     private void removeNode(Node node) {
         if (node.previous == null) {
             head = node.next;
@@ -102,8 +110,11 @@ public class DoublyLinkedList {
             tail = node.previous;
         }
 
-        if (node.previous != null && node.next != null) {
+        if (node.previous != null) {
             node.previous.next = node.next;
+        }
+
+        if (node.next != null) {
             node.next.previous = node.previous;
         }
 
@@ -111,6 +122,9 @@ public class DoublyLinkedList {
     }
 
     private void insertNode(Node nodeBefore, Node node, Node nodeAfter) {
+        node.next = nodeAfter;
+        node.previous = nodeBefore;
+
         if (nodeBefore == null) {
             head = node;
         }
@@ -119,8 +133,13 @@ public class DoublyLinkedList {
             tail = node;
         }
 
-        node.next = nodeAfter;
-        node.previous = nodeBefore;
+        if (nodeBefore != null) {
+            nodeBefore.next = node;
+        }
+
+        if (nodeAfter != null) {
+            nodeAfter.previous = node;
+        }
 
         length++;
     }
